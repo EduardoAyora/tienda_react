@@ -2,26 +2,26 @@ export const categorias = [
     {
         id: 1,
         nombre: 'Bebidas frías',
-        imagen: '/images/categoria.jpeg'
+        imagen: '/images/categorias/carta.png'
     },
     {
         id: 2,
         nombre: 'A la carta',
-        imagen: '/images/categoria.jpeg'
+        imagen: '/images/categorias/carta.png'
     },
     {
         id: 3,
         nombre: 'Bebidas Calientes',
-        imagen: '/images/categoria.jpeg'
+        imagen: '/images/categorias/bebida-caliente.png'
     },
     {
         id: 4,
         nombre: 'Comida rápida',
-        imagen: '/images/categoria.jpeg'
+        imagen: '/images/categorias/carta.png'
     },
     {
         id: 5,
         nombre: 'Postres',
-        imagen: '/images/categoria.jpeg'
+        imagen: '/images/categorias/bebida-caliente.png'
     },
 ]
