@@ -1,0 +1,92 @@
+export const platos = [
+    {
+        id: 1,
+        nombre: 'Gaseosa',
+        imagen: '/images/gaseosa.jpeg',
+        id_categoria: 1,
+    },
+    {
+        id: 2,
+        nombre: 'Gaseosa',
+        imagen: '/images/gaseosa.jpeg',
+        id_categoria: 1,
+    },
+    {
+        id: 3,
+        nombre: 'Gaseosa',
+        imagen: '/images/gaseosa.jpeg',
+        id_categoria: 1,
+    },
+    {
+        id: 4,
+        nombre: 'Crema de verduras',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 2,
+    },
+    {
+        id: 5,
+        nombre: 'Crema de verduras',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 2,
+    },
+    {
+        id: 6,
+        nombre: 'Crema de verduras',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 2,
+    },
+    {
+        id: 7,
+        nombre: 'Café',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 3,
+    },
+    {
+        id: 8,
+        nombre: 'Café',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 3,
+    },
+    {
+        id: 9,
+        nombre: 'Café',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 3,
+    },
+    {
+        id: 10,
+        nombre: 'Pizza',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 4,
+    },
+    {
+        id: 11,
+        nombre: 'Pizza',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 4,
+    },
+    {
+        id: 12,
+        nombre: 'Pizza',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 4,
+    },
+    {
+        id: 13,
+        nombre: 'Tiramisú',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 5,
+    },
+    {
+        id: 14,
+        nombre: 'Tiramisú',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 5,
+    },
+    {
+        id: 15,
+        nombre: 'Tiramisú',
+        imagen: '/images/categoria.jpeg',
+        id_categoria: 5,
+    },
+]
