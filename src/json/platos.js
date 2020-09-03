@@ -2,19 +2,19 @@ export const platos = [
     {
         id: 1,
         nombre: 'Gaseosa',
-        imagen: '/images/gaseosa.jpeg',
+        imagen: '/images/productos/gaseosa.jpg',
         id_categoria: 1,
     },
     {
         id: 2,
         nombre: 'Gaseosa',
-        imagen: '/images/gaseosa.jpeg',
+        imagen: '/images/productos/gaseosa.jpg',
         id_categoria: 1,
     },
     {
         id: 3,
         nombre: 'Gaseosa',
-        imagen: '/images/gaseosa.jpeg',
+        imagen: '/images/productos/gaseosa.jpg',
         id_categoria: 1,
     },
     {

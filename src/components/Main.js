@@ -3,15 +3,17 @@ import React from 'react';
 import {Header} from './Header';
 import {Footer} from './Footer';
 import {Discovery} from './Discovery';
+import {Cart} from './Cart';
+import {User} from './User';
+import {Category} from './Category';
 
 import {
     BrowserRouter as Router,
     Switch,
     Route
-  } from "react-router-dom";
+} from "react-router-dom";
 
 import {categorias} from '../json/categorias';
-// import {platos} from '../json/platos';
 // import {precios} from '../json/precios';
 
 export class Main extends React.Component {
@@ -20,24 +22,30 @@ export class Main extends React.Component {
 
         this.state = {
             categories: categorias,
-            // dishes: platos,
-            // prices: precios
         }
     }
 
     render() {
         return(
             <Router>
-                <Header />
+                {/* el main-container solo en los 
+                que tienen footer */}
                 <div className="main-container">
                     <Switch>
-                        <Route path="/">
-                            <Discovery categories={this.state.categories} />
-                        </Route>
                         <Route path="/carrito">
-                            <Discovery categories={this.state.categories} />
+                            <Cart />
                         </Route>
                         <Route path="/usuario">
+                            <User />
+                        </Route>
+                        <Route path='/categorias/:slug' render={(props) =>
+                            <div>
+                                <Header />
+                                <Category {...props} />
+                            </div>
+                        } />
+                        <Route path="/">
+                            <Header />
                             <Discovery categories={this.state.categories} />
                         </Route>
                     </Switch>
