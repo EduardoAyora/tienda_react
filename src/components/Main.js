@@ -4,6 +4,12 @@ import {Header} from './Header';
 import {Footer} from './Footer';
 import {Discovery} from './Discovery';
 
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+  } from "react-router-dom";
+
 import {categorias} from '../json/categorias';
 // import {platos} from '../json/platos';
 // import {precios} from '../json/precios';
@@ -21,11 +27,23 @@ export class Main extends React.Component {
 
     render() {
         return(
-            <div>
+            <Router>
                 <Header />
-                <Discovery categories={this.state.categories} />
+                <div className="main-container">
+                    <Switch>
+                        <Route path="/">
+                            <Discovery categories={this.state.categories} />
+                        </Route>
+                        <Route path="/carrito">
+                            <Discovery categories={this.state.categories} />
+                        </Route>
+                        <Route path="/usuario">
+                            <Discovery categories={this.state.categories} />
+                        </Route>
+                    </Switch>
+                </div>
                 <Footer />
-            </div>
+            </Router>
         )
     }
 }

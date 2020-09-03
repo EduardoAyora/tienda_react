@@ -2,15 +2,15 @@ header {
     height: 40px;
 }
 
-.main {
-    background-color: #f2f2f4;
+.main-container {
+    margin-bottom: 60px;
 }
 
 .discovery-container {
-    padding: 1em;
+    padding: 2em 1em;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1em;
+    grid-gap: 1.5em;
     grid-auto-rows: minmax(150px, auto);
     background-color: #f2f2f4;
 }
@@ -33,5 +33,25 @@ header {
 }
 
 footer {
+    position: fixed;
+    width: 100vw;
+    background-color: white;
+    bottom: 0px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
 
+.footer-links {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    justify-content: space-around;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: gray;
 }

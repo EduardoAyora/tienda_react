@@ -24,4 +24,14 @@ export const categorias = [
         nombre: 'Postres',
         imagen: '/images/categorias/bebida-caliente.png'
     },
+    {
+        id: 6,
+        nombre: 'Categoria 6',
+        imagen: '/images/categorias/carta.png'
+    },
+    {
+        id: 7,
+        nombre: 'Categoria 7',
+        imagen: '/images/categorias/bebida-caliente.png'
+    },
 ]
