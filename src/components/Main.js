@@ -39,13 +39,10 @@ export class Main extends React.Component {
                             <User />
                         </Route>
                         <Route path='/categorias/:slug' render={(props) =>
-                            <div>
-                                <Header />
-                                <Category {...props} />
-                            </div>
+                            <Category {...props} />
                         } />
                         <Route path="/">
-                            <Header />
+                            <Header pageName="Categorías" isChildPage={false} />
                             <Discovery categories={this.state.categories} />
                         </Route>
                     </Switch>

@@ -1,13 +1,8 @@
 import React from 'react';
 
 import {CategoryButton} from './CategoryButton';
-import { render } from '@testing-library/react';
 
 export class Discovery extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         document.body.style.backgroundColor = '#f2f2f4';

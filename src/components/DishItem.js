@@ -3,12 +3,14 @@ import React from 'react';
 export function DishItem(props) {
     const dish = props.dish;
     return (
-        <div className="dish-item">
-            <img src={dish.imagen} />
+        <li className="dish-item">
+            <div className="dish-item-image-container">
+                <img src={dish.imagen} alt={dish.nombre} />
+            </div>
             <div className="dish-item-info">
                 <h4>{dish.nombre}</h4>
-                <p>{dish.description}</p>
+
             </div>
-        </div>
+        </li>
     )
 }
