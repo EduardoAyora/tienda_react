@@ -13,15 +13,14 @@ import {
     Route
 } from "react-router-dom";
 
-import {categorias} from '../json/categorias';
-// import {precios} from '../json/precios';
+import {data} from "../json/data";
 
 export class Main extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            categories: categorias,
+            data: data,
         }
     }
 
@@ -39,11 +38,11 @@ export class Main extends React.Component {
                             <User />
                         </Route>
                         <Route path='/categorias/:slug' render={(props) =>
-                            <Category {...props} />
+                            <Category {...props} data={this.state.data} />
                         } />
                         <Route path="/">
-                            <Header pageName="Categorías" isChildPage={false} />
-                            <Discovery categories={this.state.categories} />
+                            <Header pageName="Categorías" />
+                            <Discovery categories={this.state.data} />
                         </Route>
                     </Switch>
                 </div>

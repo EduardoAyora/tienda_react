@@ -71,14 +71,42 @@ li.dish-item {
     background-color: white;
     display: flex;
     height: 100px;
-    padding: .5em;
+    padding: .5em .5em .5em 15%;
     margin-bottom: 1em;
     box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+button.dish-item-arrow {
+    background-color: rgba(247, 203, 51, 0.05);
+    border-style: none;
+    outline: none;
+    position: absolute;
+    height: 100%;
+    width: 10%;
+    top: 0px;
+}
+
+button.left-item-arrow {
+    border-right: solid 1px rgba(0, 0, 0, 0.2);
+    left: 0px;
+}
+
+button.right-item-arrow {
+    border-left: solid 1px rgba(0, 0, 0, 0.2);
+    right: 0px;
+}
+
+button.dish-item-arrow:hover {
+    background-color: rgba(247, 203, 51, 0.5);
 }
 
 .dish-item-image-container {
     height: 100%;
-    width: 100px;
+    width: 120px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 
 .dish-item img {
@@ -89,7 +117,10 @@ li.dish-item {
 .dish-item-info {
     margin-left: .5em;
     display: flex;
-    align-items: center;
+}
+
+.dish-item-name {
+    margin: 0px;
 }
 
 footer {
