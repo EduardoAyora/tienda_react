@@ -67,15 +67,19 @@ export class DishItem extends React.Component {
         if(pricesArray.length === 1) {
             return (
                 <DishItemContainer dish={dish}>
-                    <span>{pricesArray[0].nombre}</span>
-                    <div>
-                        {pricesArray[0].precio}
+                    <div className="dish-item-price">
+                        <span>{`${pricesArray[0].nombre}:`}</span>
+                        <span>{`$${pricesArray[0].precio}`}</span>
                     </div>
-                    <div className="dish-item-input-group">
-                        <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
-                        <input type="number" value={quantity} className="dish-item-quantity-field"
-                            onChange={this.inputChange} />
-                        <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
+                    
+                    <div className="dish-item-add-container">
+                        <div className="dish-item-input-group">
+                            <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
+                            <input type="number" value={quantity} className="dish-item-quantity-field"
+                                onChange={this.inputChange} />
+                            <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
+                        </div>
+                        <button className="dish-item-add-button">Agregar</button>
                     </div>
                 </DishItemContainer>
             )
@@ -83,18 +87,28 @@ export class DishItem extends React.Component {
         else if(pricesArray.length > 1) {
             return (
                 <DishItemContainer dish={dish}>
-                    <button type="button" className="dish-item-arrow left-item-arrow" onClick={() => console.log('s')}>
-                        <FontAwesomeIcon icon={faArrowLeft} className="fa-lg" />
-                    </button>
-    
-                    <span>{pricesArray[0].nombre}</span>
-                    <div>
-                        {pricesArray[0].precio}
+                    <div className="dish-item-price-arrows-container">
+                        <button type="button" className="dish-item-arrow left-item-arrow" onClick={() => console.log('s')}>
+                            <FontAwesomeIcon icon={faArrowLeft} className="fa-lg" />
+                        </button>
+                        <div className="dish-item-price">
+                            <span>{`${pricesArray[0].nombre}:`}</span>
+                            <span>{`$${pricesArray[0].precio}`}</span>
+                        </div>
+                        <button type="button" className="dish-item-arrow right-item-arrow" onClick={() => console.log('s')}>
+                            <FontAwesomeIcon icon={faArrowRight} className="fa-lg" />
+                        </button>
                     </div>
-    
-                    <button type="button" className="dish-item-arrow right-item-arrow" onClick={() => console.log('s')}>
-                        <FontAwesomeIcon icon={faArrowRight} className="fa-lg" />
-                    </button>
+
+                    <div className="dish-item-add-container">
+                        <div className="dish-item-input-group">
+                            <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
+                            <input type="number" value={quantity} className="dish-item-quantity-field"
+                                onChange={this.inputChange} />
+                            <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
+                        </div>
+                        <button className="dish-item-add-button">Agregar</button>
+                    </div>
                 </DishItemContainer>
             )
         }
