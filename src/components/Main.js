@@ -26,9 +26,7 @@ export class Main extends React.Component {
 
     render() {
         return(
-            <Router>
-                {/* el main-container solo en los 
-                que tienen footer */}
+            <Router basename={'/tienda_react_build'}>
                 <div className="main-container">
                     <Switch>
                         <Route path="/carrito">
