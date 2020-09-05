@@ -122,7 +122,7 @@ function DishItemContainer(props) {
     return (
         <li className="dish-item">
             <div className="dish-item-image-container">
-                <img src={dish.imagen} alt={dish.nombre} />
+                <img src={process.env.PUBLIC_URL + dish.imagen} alt={dish.nombre} />
             </div>
             <div className="dish-item-info">
                 <h4 className="dish-item-name">{dish.nombre}</h4>
