@@ -84,6 +84,12 @@ li.dish-item {
     justify-content: center;
 }
 
+@media only screen and (min-width: 600px) {
+    .dish-item-price-arrows-container {
+        width: 300px;
+    }
+}
+
 button.dish-item-arrow {
     background-color: rgba(247, 203, 51, 0.5);
     border-style: none;

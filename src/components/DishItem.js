@@ -64,6 +64,18 @@ export class DishItem extends React.Component {
         let quantity = this.state.quantity;
         const pricesArray = dish.precios;
 
+        const addToCartComponent = (
+            <div className="dish-item-add-container">
+                <div className="dish-item-input-group">
+                    <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
+                    <input type="number" value={quantity} className="dish-item-quantity-field"
+                        onChange={this.inputChange} />
+                    <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
+                </div>
+                <button className="dish-item-add-button">Agregar</button>
+            </div>
+        )
+
         if(pricesArray.length === 1) {
             return (
                 <DishItemContainer dish={dish}>
@@ -72,15 +84,7 @@ export class DishItem extends React.Component {
                         <span>{`$${pricesArray[0].precio}`}</span>
                     </div>
                     
-                    <div className="dish-item-add-container">
-                        <div className="dish-item-input-group">
-                            <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
-                            <input type="number" value={quantity} className="dish-item-quantity-field"
-                                onChange={this.inputChange} />
-                            <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
-                        </div>
-                        <button className="dish-item-add-button">Agregar</button>
-                    </div>
+                    {addToCartComponent}
                 </DishItemContainer>
             )
         }
@@ -100,15 +104,7 @@ export class DishItem extends React.Component {
                         </button>
                     </div>
 
-                    <div className="dish-item-add-container">
-                        <div className="dish-item-input-group">
-                            <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
-                            <input type="number" value={quantity} className="dish-item-quantity-field"
-                                onChange={this.inputChange} />
-                            <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
-                        </div>
-                        <button className="dish-item-add-button">Agregar</button>
-                    </div>
+                    {addToCartComponent}
                 </DishItemContainer>
             )
         }

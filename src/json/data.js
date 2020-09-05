@@ -2,7 +2,7 @@ export const data = [
     {
         id: 1,
         nombre: 'Bebidas frías',
-        imagen: '/images/categorias/carta.png',
+        imagen: '/images/categorias/bebida-fria.svg',
         slug: 'bebidas-frias',
         platos: [
             {
@@ -12,7 +12,7 @@ export const data = [
                 precios: [
                     {
                         id: 1,
-                        precio: 0.7,
+                        precio: 0.6,
                         nombre: 'pequeña',
                     },
                     {
@@ -43,7 +43,13 @@ export const data = [
                 id: 3,
                 nombre: 'Gaseosa',
                 imagen: '/images/productos/gaseosa.jpg',
-                precios: []
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
         ]
     },
@@ -56,20 +62,48 @@ export const data = [
             {
                 id: 4,
                 nombre: 'Crema de verduras',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/crema.jpg',
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
             {
                 id: 5,
                 nombre: 'Crema de verduras',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/crema.jpg',
+                precios: [
+                    {
+                        id: 1,
+                        precio: 0.6,
+                        nombre: 'pequeña',
+                    },
+                    {
+                        id: 1,
+                        precio: 2,
+                        nombre: 'mediana',
+                    },
+                    {
+                        id: 1,
+                        precio: 3.25,
+                        nombre: 'grande',
+                    },
+                ]
             },
             {
                 id: 6,
                 nombre: 'Crema de verduras',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/crema.jpg',
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
         ]
     },
@@ -82,74 +116,158 @@ export const data = [
             {
                 id: 7,
                 nombre: 'Café',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/cafe.jpg',
+                precios: [
+                    {
+                        id: 1,
+                        precio: 0.6,
+                        nombre: 'pequeña',
+                    },
+                    {
+                        id: 1,
+                        precio: 2,
+                        nombre: 'mediana',
+                    },
+                    {
+                        id: 1,
+                        precio: 3.25,
+                        nombre: 'grande',
+                    },
+                ]
             },
             {
                 id: 8,
                 nombre: 'Café',
-                imagen: '/images/categoria.jpeg',
+                imagen: '/images/productos/cafe.jpg',
                 id_categoria: 3,
-                precios: []
+                precios: [
+                    {
+                        id: 1,
+                        precio: 0.6,
+                        nombre: 'pequeña',
+                    },
+                    {
+                        id: 1,
+                        precio: 2,
+                        nombre: 'mediana',
+                    },
+                    {
+                        id: 1,
+                        precio: 3.25,
+                        nombre: 'grande',
+                    },
+                ]
             },
             {
                 id: 9,
                 nombre: 'Café',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/cafe.jpg',
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
         ]
     },
     {
         id: 4,
         nombre: 'Comida rápida',
-        imagen: '/images/categorias/carta.png',
+        imagen: '/images/categorias/rapida.png',
         slug: 'comida-rapida',
         platos: [
             {
                 id: 10,
                 nombre: 'Pizza',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/pizza.jpg',
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
             {
                 id: 11,
                 nombre: 'Pizza',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/pizza.jpg',
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
             {
                 id: 12,
                 nombre: 'Pizza',
-                imagen: '/images/categoria.jpeg',
+                imagen: '/images/productos/pizza.jpg',
                 id_categoria: 4,
-                precios: []
+                precios: [
+                    {
+                        id: 1,
+                        precio: 0.6,
+                        nombre: 'pequeña',
+                    },
+                    {
+                        id: 1,
+                        precio: 2,
+                        nombre: 'mediana',
+                    },
+                    {
+                        id: 1,
+                        precio: 3.25,
+                        nombre: 'grande',
+                    },
+                ]
             },
         ]
     },
     {
         id: 5,
         nombre: 'Postres',
-        imagen: '/images/categorias/bebida-caliente.png',
+        imagen: '/images/categorias/postre.png',
         slug: 'postres',
         platos: [
             {
                 id: 13,
                 nombre: 'Tiramisú',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/tiramisu.jpg',
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
             {
                 id: 14,
                 nombre: 'Tiramisú',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/tiramisu.jpg',
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
             {
                 id: 15,
                 nombre: 'Tiramisú',
-                imagen: '/images/categoria.jpeg',
-                precios: []
+                imagen: '/images/productos/tiramisu.jpg',
+                precios: [
+                    {
+                        id: 4,
+                        precio: 0.7,
+                        nombre: 'unidad',
+                    },
+                ]
             },
         ]
     },
