@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {DishItem} from './DishItem';
 import {Header} from './Header';
 
-export function Category({match, history, data}) {
+export function Category({match, history, data, addToCart}) {
     // hook equivalente a DidMount y WillUnmount
     useEffect(() => {
         document.body.style.backgroundColor = '#f2f2f4';
@@ -15,7 +15,7 @@ export function Category({match, history, data}) {
     const category = data.find(({slug}) => slug === match.params.slug);
     const dishesArray = category.platos;
     const dishes = dishesArray.map((dish) => (
-        <DishItem key={dish.id} dish={dish} />
+        <DishItem key={dish.id} dish={dish} addToCart={addToCart} />
     ));
 
     return(

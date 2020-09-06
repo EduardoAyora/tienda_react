@@ -15,6 +15,7 @@ export class DishItem extends React.Component {
         this.buttonMinusClick = this.buttonMinusClick.bind(this);
         this.buttonPlusClick = this.buttonPlusClick.bind(this);
         this.inputChange = this.inputChange.bind(this);
+        this.addToCartClick = this.addToCartClick.bind(this);
     }
 
     buttonMinusClick() {
@@ -59,9 +60,17 @@ export class DishItem extends React.Component {
         }
     }
 
+    addToCartClick() {
+        const dish = this.props.dish;
+        const quantity = this.state.quantity;
+        const pricesArray = dish.precios;
+        const addToCart = this.props.addToCart;
+        addToCart(dish.id, pricesArray[0].id, quantity);
+    }
+
     render() {
-        let dish = this.props.dish;
-        let quantity = this.state.quantity;
+        const dish = this.props.dish;
+        const quantity = this.state.quantity;
         const pricesArray = dish.precios;
 
         const addToCartComponent = (
@@ -72,7 +81,8 @@ export class DishItem extends React.Component {
                         onChange={this.inputChange} />
                     <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
                 </div>
-                <button className="dish-item-add-button">Agregar</button>
+                <button className="dish-item-add-button" 
+                    onClick={this.addToCartClick}>Agregar</button>
             </div>
         )
 

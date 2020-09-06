@@ -13,7 +13,8 @@ import {
     Route
 } from "react-router-dom";
 
-import {data} from "../json/data";
+import data from "../json/data";
+import inCart from "../json/inCart";
 
 export class Main extends React.Component {
     constructor(props) {
@@ -21,6 +22,39 @@ export class Main extends React.Component {
 
         this.state = {
             data: data,
+            inCart: inCart
+        }
+        this.addToCart = this.addToCart.bind(this);
+    }
+
+    addToCart(addedProductId, addedPriceId, quantity) {
+        const inCart = this.state.inCart;
+        const index = inCart.findIndex((elementInCart) => (
+            (elementInCart.productId === addedProductId) && (elementInCart.priceId === addedPriceId)
+        ));
+        if(index === -1) {
+            console.log('nuevo')
+            this.setState({
+                inCart: [
+                    ...inCart,
+                    {
+                        productId: addedProductId,
+                        priceId: addedPriceId,
+                        quantity: quantity
+                    }
+                ]
+            })
+        }
+        else {
+            const newInCart = [...inCart];
+            newInCart[index] = {
+                productId: addedProductId,
+                priceId: addedPriceId,
+                quantity: quantity + inCart[index].quantity
+            };
+            this.setState({
+                inCart: newInCart
+            })
         }
     }
 
@@ -36,7 +70,7 @@ export class Main extends React.Component {
                             <User />
                         </Route>
                         <Route path='/categorias/:slug' render={(props) =>
-                            <Category {...props} data={this.state.data} />
+                            <Category {...props} data={this.state.data} addToCart={this.addToCart} />
                         } />
                         <Route path="/">
                             <Header pageName="Categorías" />

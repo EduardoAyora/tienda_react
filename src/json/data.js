@@ -1,4 +1,4 @@
-export const data = [
+const data = [
     {
         id: 1,
         nombre: 'Bebidas frías',
@@ -286,3 +286,5 @@ export const data = [
         platos: []
     },
 ]
+
+export default data;
