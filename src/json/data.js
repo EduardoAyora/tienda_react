@@ -41,7 +41,7 @@ const data = [
             },
             {
                 id: 3,
-                nombre: 'Gaseosa',
+                nombre: 'Bebida fria dos',
                 imagen: '/images/productos/gaseosa.jpg',
                 precios: [
                     {
@@ -73,7 +73,7 @@ const data = [
             },
             {
                 id: 5,
-                nombre: 'Crema de verduras',
+                nombre: 'Plato dos',
                 imagen: '/images/productos/crema.jpg',
                 precios: [
                     {
@@ -95,7 +95,7 @@ const data = [
             },
             {
                 id: 6,
-                nombre: 'Crema de verduras',
+                nombre: 'Plato tres',
                 imagen: '/images/productos/crema.jpg',
                 precios: [
                     {
@@ -137,7 +137,7 @@ const data = [
             },
             {
                 id: 8,
-                nombre: 'Café',
+                nombre: 'Bebida dos',
                 imagen: '/images/productos/cafe.jpg',
                 id_categoria: 3,
                 precios: [
@@ -160,7 +160,7 @@ const data = [
             },
             {
                 id: 9,
-                nombre: 'Café',
+                nombre: 'Bebida tres',
                 imagen: '/images/productos/cafe.jpg',
                 precios: [
                     {
@@ -192,7 +192,7 @@ const data = [
             },
             {
                 id: 11,
-                nombre: 'Pizza',
+                nombre: 'Comida rápida dos',
                 imagen: '/images/productos/pizza.jpg',
                 precios: [
                     {
@@ -204,7 +204,7 @@ const data = [
             },
             {
                 id: 12,
-                nombre: 'Pizza',
+                nombre: 'Comida rápida tres',
                 imagen: '/images/productos/pizza.jpg',
                 id_categoria: 4,
                 precios: [
@@ -247,7 +247,7 @@ const data = [
             },
             {
                 id: 14,
-                nombre: 'Tiramisú',
+                nombre: 'Postre dos',
                 imagen: '/images/productos/tiramisu.jpg',
                 precios: [
                     {
@@ -259,7 +259,7 @@ const data = [
             },
             {
                 id: 15,
-                nombre: 'Tiramisú',
+                nombre: 'Postre tres',
                 imagen: '/images/productos/tiramisu.jpg',
                 precios: [
                     {

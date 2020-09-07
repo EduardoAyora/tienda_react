@@ -22,10 +22,12 @@ export class Main extends React.Component {
 
         this.state = {
             data: data,
-            inCart: inCart
+            inCart: inCart,
+            newInCart: true
         }
         this.addToCart = this.addToCart.bind(this);
         this.quitFromCart = this.quitFromCart.bind(this);
+        this.changeNewInCart = this.changeNewInCart.bind(this);
     }
 
     addToCart(addedProductId, addedPriceId, quantity) {
@@ -68,6 +70,12 @@ export class Main extends React.Component {
         })
     }
 
+    changeNewInCart(boolean) {
+        this.setState({
+            newInCart: boolean
+        })
+    }
+
     render() {
         return(
             <Router basename={'/tienda_react'}>
@@ -76,13 +84,15 @@ export class Main extends React.Component {
                         <Route path="/carrito">
                             <Header pageName="Carrito" />
                             <Cart data={this.state.data} inCart={this.state.inCart}
-                                addToCart={this.addToCart} quitFromCart={this.quitFromCart} />
+                                addToCart={this.addToCart} quitFromCart={this.quitFromCart}
+                                changeNewInCart={this.changeNewInCart} />
                         </Route>
                         <Route path="/usuario">
                             <User />
                         </Route>
                         <Route path='/categorias/:slug' render={(props) =>
-                            <Category {...props} data={this.state.data} addToCart={this.addToCart} />
+                            <Category {...props} data={this.state.data} addToCart={this.addToCart}
+                                changeNewInCart={this.changeNewInCart} />
                         } />
                         <Route path="/">
                             <Header pageName="Categorías" />
@@ -90,7 +100,7 @@ export class Main extends React.Component {
                         </Route>
                     </Switch>
                 </div>
-                <Footer />
+                <Footer newInCart={this.state.newInCart} />
             </Router>
         )
     }

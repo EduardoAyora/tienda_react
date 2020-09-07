@@ -4,7 +4,15 @@ import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faShoppingCart, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
-export function Footer() {
+export function Footer({newInCart}) {
+    let newInCartIcon;
+    if(newInCart === true) {
+        newInCartIcon = (
+            <span className="new-in-cart-icon-container">
+                <span className="new-in-cart-icon"></span>          
+            </span>
+        )
+    }
     return (
         <footer>
             <ul className="footer-links">
@@ -16,6 +24,7 @@ export function Footer() {
                 <li>
                     <Link to="/carrito">
                         <FontAwesomeIcon icon={faShoppingCart} className="fa-lg" />
+                        {newInCartIcon}
                     </Link>
                 </li>
                 <li>

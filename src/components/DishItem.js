@@ -72,6 +72,14 @@ export class DishItem extends React.Component {
             })
         }
         addToCart(dish.id, pricesArray[0].id, quantity);
+
+        // renderizando icono de nuevo en carrito
+        const changeNewInCart = this.props.changeNewInCart;
+        changeNewInCart(false);
+        const waitForChange = () => {
+            changeNewInCart(true);
+        }
+        setTimeout(waitForChange, 10);
     }
 
     render() {

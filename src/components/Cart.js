@@ -4,6 +4,7 @@ import {Detail} from './Detail';
 export class Cart extends React.Component {
 
     componentDidMount() {
+        this.props.changeNewInCart(false);
         document.body.style.backgroundColor = '#f2f2f4';
     }
 

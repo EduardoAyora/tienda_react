@@ -309,4 +309,37 @@ footer {
 .footer-links a {
     text-decoration: none;
     color: gray;
+    position: relative;
+}
+
+.new-in-cart-icon-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.new-in-cart-icon {
+    position: absolute;
+    border-radius: 1.2em;
+    height: 1.2em;
+    width: 1.2em;
+    background-color: rgb(247, 203, 51);
+    animation-timing-function: linear;
+    animation-duration: .5s;
+    animation-name: added;
+}
+  
+@keyframes added {
+    50% {
+        height: 1.7em;
+        width: 1.7em;
+        background-color: rgba(247, 203, 51, 0.7);
+    }
+
+    100% {
+        height: 1.2em;
+        width: 1.2em;
+    }
 }
