@@ -27,9 +27,25 @@ export function Cart({data, inCart}) {
         };
     });
 
-    return (
-        <ul className="items-container cart-container">
-            {details}
-        </ul>
-    )
+    if(details.length === 0) {
+        return (
+            <div className="empty-cart">
+                El carrito está vacío
+            </div>
+        )
+    }
+    else {
+        return (
+            <div>
+                <ul className="items-container cart-container">
+                    {details}
+                </ul>
+                <div className="cart-total-container">
+                    <div className="cart-total">Total: $200.00</div>
+                    <button className="cart-total-button">Finalizar Compra</button>
+                </div>
+            </div>
+        )
+    }
+    
 }

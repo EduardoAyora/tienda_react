@@ -239,6 +239,43 @@ button.dish-item-add-button {
     margin-bottom: .4em;
 }
 
+.cart-total-container {
+    position: relative;
+    height: 7em;
+}
+
+.cart-total {
+    position: absolute;
+    top: 1em;
+    right: .8em;
+    font-weight: bold;
+}
+
+.cart-total-button {
+    position: absolute;
+    top: 4em;
+    right: .8em;
+    background-color: #f7cb33;
+    border-radius: 3px;
+    outline: none;
+    border-style: none;
+    height: 3em;
+    padding: 0 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+}
+
+.empty-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    font-size: 2em;
+    font-weight: 700;
+    color: gray;
+}
+
 footer {
     position: fixed;
     width: 100vw;

@@ -32,6 +32,8 @@ export class Detail extends React.Component {
         ));
         const priceName = price.nombre;
         const priceValue = price.precio;
+        const quantity = cartElement.quantity;
+        const detailTotal = Math.round(priceValue * quantity * 100) / 100;
         return(
             <li className="dish-item dish-item-detail">
                 <div className="dish-item-image-container">
@@ -48,14 +50,14 @@ export class Detail extends React.Component {
                     <div className="dish-item-add-container dish-item-add-container-left">
                         <div className="dish-item-input-group">
                             <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
-                            <input type="number" value={cartElement.quantity} className="dish-item-quantity-field"
+                            <input type="number" value={quantity} className="dish-item-quantity-field"
                                 onChange={this.inputChange} />
                             <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
                         </div>
                     </div>
 
                     <span className="dish-item-detail-price">
-                        {`$${'120.00'}`}
+                        {`$${detailTotal}`}
                     </span>
                 </div>
     
