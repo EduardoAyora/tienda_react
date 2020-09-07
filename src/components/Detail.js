@@ -32,14 +32,11 @@ export class Detail extends React.Component {
 
     render() {
         const dish = this.props.dish;
-        const cartElement = this.props.cartElement;
-        const price = dish.precios.find((price) => (
-            price.id === cartElement.priceId
-        ));
-        const priceName = price.nombre;
-        const priceValue = price.precio;
-        const quantity = cartElement.quantity;
-        const detailTotal = Math.round(priceValue * quantity * 100) / 100;
+        const priceName = this.props.priceName;
+        const priceValue = this.props.priceValue;
+        const quantity = this.props.quantity;
+        const detailTotal = this.props.detailTotal;
+
         return(
             <li className="dish-item dish-item-detail">
                 <div className="dish-item-image-container">
