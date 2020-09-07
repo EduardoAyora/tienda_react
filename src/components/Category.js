@@ -21,7 +21,7 @@ export function Category({match, history, data, addToCart}) {
     return(
         <div>
             <Header pageName={category.nombre} history={history} />
-            <ul className="category-container">
+            <ul className="items-container category-container">
                 {dishes}
             </ul>
         </div>

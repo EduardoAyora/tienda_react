@@ -33,7 +33,6 @@ export class Main extends React.Component {
             (elementInCart.productId === addedProductId) && (elementInCart.priceId === addedPriceId)
         ));
         if(index === -1) {
-            console.log('nuevo')
             this.setState({
                 inCart: [
                     ...inCart,
@@ -64,7 +63,8 @@ export class Main extends React.Component {
                 <div className="main-container">
                     <Switch>
                         <Route path="/carrito">
-                            <Cart />
+                            <Header pageName="Carrito" />
+                            <Cart data={this.state.data} inCart={this.state.inCart} />
                         </Route>
                         <Route path="/usuario">
                             <User />

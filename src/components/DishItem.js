@@ -62,9 +62,15 @@ export class DishItem extends React.Component {
 
     addToCartClick() {
         const dish = this.props.dish;
-        const quantity = this.state.quantity;
+        let quantity = this.state.quantity;
         const pricesArray = dish.precios;
         const addToCart = this.props.addToCart;
+        if(quantity === ""){
+            quantity = 1;
+            this.setState({
+                quantity: 1
+            })
+        }
         addToCart(dish.id, pricesArray[0].id, quantity);
     }
 
@@ -74,7 +80,7 @@ export class DishItem extends React.Component {
         const pricesArray = dish.precios;
 
         const addToCartComponent = (
-            <div className="dish-item-add-container">
+            <div className="dish-item-add-container dish-item-add-container-right">
                 <div className="dish-item-input-group">
                     <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
                     <input type="number" value={quantity} className="dish-item-quantity-field"
@@ -130,7 +136,7 @@ export class DishItem extends React.Component {
 function DishItemContainer(props) {
     const dish = props.dish;
     return (
-        <li className="dish-item">
+        <li className="dish-item dish-item-add">
             <div className="dish-item-image-container">
                 <img src={process.env.PUBLIC_URL + dish.imagen} alt={dish.nombre} />
             </div>
