@@ -25,6 +25,7 @@ export class Main extends React.Component {
             inCart: inCart
         }
         this.addToCart = this.addToCart.bind(this);
+        this.quitFromCart = this.quitFromCart.bind(this);
     }
 
     addToCart(addedProductId, addedPriceId, quantity) {
@@ -57,6 +58,16 @@ export class Main extends React.Component {
         }
     }
 
+    quitFromCart(removedProductId, removedPriceId) {
+        const inCart = this.state.inCart;
+        const newInCart = inCart.filter(elementInCart => (
+            (elementInCart.productId !== removedProductId) || (elementInCart.priceId !== removedPriceId)
+        ))
+        this.setState({
+            inCart: newInCart
+        })
+    }
+
     render() {
         return(
             <Router basename={'/tienda_react'}>
@@ -64,7 +75,8 @@ export class Main extends React.Component {
                     <Switch>
                         <Route path="/carrito">
                             <Header pageName="Carrito" />
-                            <Cart data={this.state.data} inCart={this.state.inCart} />
+                            <Cart data={this.state.data} inCart={this.state.inCart}
+                                addToCart={this.addToCart} quitFromCart={this.quitFromCart} />
                         </Route>
                         <Route path="/usuario">
                             <User />

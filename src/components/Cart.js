@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Detail} from './Detail';
 
-export function Cart({data, inCart}) {
+export function Cart({data, inCart, addToCart, quitFromCart}) {
     const details = inCart.map((cartElement) => {
         let product;
         data.forEach((category) => {
@@ -16,7 +16,8 @@ export function Cart({data, inCart}) {
             // y el usuario haya tenido ese producto en su carrito
         }
         return (
-            <Detail key={product.id} dish={product} cartElement={cartElement} />
+            <Detail key={product.id} dish={product} cartElement={cartElement}
+                addToCart={addToCart} quitFromCart={quitFromCart} />
         )
     })
 

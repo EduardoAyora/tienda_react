@@ -215,6 +215,16 @@ button.dish-item-add-button {
     border-radius: 3px;
 }
 
+.dish-item-quantity-text-container {
+    display: inline-block;
+    width: 2em;
+}
+
+.dish-item-quantity-text {
+    display: flex;
+    justify-content: center;
+}
+
 .dish-item-image-container {
     height: 100%;
     width: 120px;
@@ -264,6 +274,7 @@ button.dish-item-add-button {
     text-transform: uppercase;
     font-weight: bold;
     color: white;
+    cursor: pointer;
 }
 
 .empty-cart {

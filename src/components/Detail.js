@@ -9,19 +9,25 @@ export class Detail extends React.Component {
         super(props);
         this.buttonMinusClick = this.buttonMinusClick.bind(this);
         this.buttonPlusClick = this.buttonPlusClick.bind(this);
-        this.inputChange = this.inputChange.bind(this);
+        this.buttonQuitClick = this.buttonQuitClick.bind(this);
     }
 
     buttonMinusClick() {
-
+        const cartElement = this.props.cartElement;
+        // solo cuando es mayor a uno ya que no queremos tener cantidades negativas
+        if(cartElement.quantity > 1) {
+            this.props.addToCart(cartElement.productId, cartElement.priceId, -1);
+        }
     }
 
     buttonPlusClick() {
-
+        const cartElement = this.props.cartElement;
+        this.props.addToCart(cartElement.productId, cartElement.priceId, 1);
     }
 
-    inputChange() {
-
+    buttonQuitClick() {
+        const cartElement = this.props.cartElement;
+        this.props.quitFromCart(cartElement.productId, cartElement.priceId);
     }
 
     render() {
@@ -50,8 +56,9 @@ export class Detail extends React.Component {
                     <div className="dish-item-add-container dish-item-add-container-left">
                         <div className="dish-item-input-group">
                             <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
-                            <input type="number" value={quantity} className="dish-item-quantity-field"
-                                onChange={this.inputChange} />
+                            <span className="dish-item-quantity-text-container">
+                                <span className="dish-item-quantity-text">{quantity}</span>
+                            </span>
                             <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
                         </div>
                     </div>
@@ -62,7 +69,7 @@ export class Detail extends React.Component {
                 </div>
     
                 <div className="quit">
-                    <button>
+                    <button onClick={this.buttonQuitClick}>
                         <FontAwesomeIcon icon={faTimes} className="fa-lg" />
                     </button>
                 </div>
