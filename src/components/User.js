@@ -1,9 +1,21 @@
 import React from 'react';
 
-export function User() {
-    return (
-        <div>
-            User
-        </div>
-    )
+export class User extends React.Component {
+
+    componentDidMount() {
+        this.props.changeActivePage('user');
+    }
+
+    componentWillUnmount() {
+        this.props.changeActivePage('');
+    }
+
+    render() {
+        return (
+            <div>
+                User
+            </div>
+        )
+    }
+
 }

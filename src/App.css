@@ -317,6 +317,10 @@ footer {
     position: relative;
 }
 
+.active-footer-icon {
+    color: #FFDA59;
+}
+
 .new-in-cart-icon-container {
     position: absolute;
     top: 0;

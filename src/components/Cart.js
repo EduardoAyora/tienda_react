@@ -5,10 +5,12 @@ export class Cart extends React.Component {
 
     componentDidMount() {
         this.props.changeNewInCart(false);
+        this.props.changeActivePage('cart');
         document.body.style.backgroundColor = '#f2f2f4';
     }
 
     componentWillUnmount() {
+        this.props.changeActivePage('');
         document.body.removeAttribute("style");
     }
 

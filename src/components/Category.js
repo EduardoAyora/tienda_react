@@ -1,30 +1,41 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {DishItem} from './DishItem';
 import {Header} from './Header';
 
-export function Category({match, history, data, addToCart, changeNewInCart}) {
-    // hook equivalente a DidMount y WillUnmount
-    useEffect(() => {
+export class Category extends React.Component {
+
+    componentDidMount() {
         document.body.style.backgroundColor = '#f2f2f4';
-        return function cleanup() {
-            document.body.removeAttribute("style");
-        };
-    });
+        this.props.changeActivePage('home');
+    }
 
-    // obteniendo los productos y sus precios dentro de la categoria
-    const category = data.find(({slug}) => slug === match.params.slug);
-    const dishesArray = category.platos;
-    const dishes = dishesArray.map((dish) => (
-        <DishItem key={dish.id} dish={dish} addToCart={addToCart}
-            changeNewInCart={changeNewInCart} />
-    ));
+    componentWillUnmount() {
+        document.body.removeAttribute("style");
+        this.props.changeActivePage('');
+    }
 
-    return(
-        <div>
-            <Header pageName={category.nombre} history={history} />
-            <ul className="items-container category-container">
-                {dishes}
-            </ul>
-        </div>
-    )
+    render() {
+        const match = this.props.match;
+        const history = this.props.history;
+        const data = this.props.data;
+        const addToCart = this.props.addToCart;
+        const changeNewInCart = this.props.changeNewInCart;
+
+        // obteniendo los productos y sus precios dentro de la categoria
+        const category = data.find(({slug}) => slug === match.params.slug);
+        const dishesArray = category.platos;
+        const dishes = dishesArray.map((dish) => (
+            <DishItem key={dish.id} dish={dish} addToCart={addToCart}
+                changeNewInCart={changeNewInCart} />
+        ));
+
+        return(
+            <div>
+                <Header pageName={category.nombre} history={history} />
+                <ul className="items-container category-container">
+                    {dishes}
+                </ul>
+            </div>
+        )
+    }
 }

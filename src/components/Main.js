@@ -24,14 +24,19 @@ export class Main extends React.Component {
             data: data,
             inCart: inCart,
             newInCart: false,
-            
+            activePage: ''
         }
         this.addToCart = this.addToCart.bind(this);
         this.quitFromCart = this.quitFromCart.bind(this);
         this.changeNewInCart = this.changeNewInCart.bind(this);
+        this.changeActivePage = this.changeActivePage.bind(this);
     }
 
-
+    changeActivePage(string) {
+        this.setState({
+            activePage: string
+        })
+    }
 
     addToCart(addedProductId, addedPriceId, quantity) {
         const inCart = this.state.inCart;
@@ -88,22 +93,22 @@ export class Main extends React.Component {
                             <Header pageName="Carrito" />
                             <Cart data={this.state.data} inCart={this.state.inCart}
                                 addToCart={this.addToCart} quitFromCart={this.quitFromCart}
-                                changeNewInCart={this.changeNewInCart} />
+                                changeNewInCart={this.changeNewInCart} changeActivePage={this.changeActivePage} />
                         </Route>
                         <Route path="/usuario">
-                            <User />
+                            <User changeActivePage={this.changeActivePage} />
                         </Route>
                         <Route path='/categorias/:slug' render={(props) =>
                             <Category {...props} data={this.state.data} addToCart={this.addToCart}
-                                changeNewInCart={this.changeNewInCart} />
+                                changeNewInCart={this.changeNewInCart} changeActivePage={this.changeActivePage} />
                         } />
                         <Route path="/">
                             <Header pageName="Categorías" />
-                            <Discovery categories={this.state.data} />
+                            <Discovery categories={this.state.data} changeActivePage={this.changeActivePage} />
                         </Route>
                     </Switch>
                 </div>
-                <Footer newInCart={this.state.newInCart} />
+                <Footer newInCart={this.state.newInCart} activePage={this.state.activePage} />
             </Router>
         )
     }
