@@ -23,12 +23,15 @@ export class Main extends React.Component {
         this.state = {
             data: data,
             inCart: inCart,
-            newInCart: true
+            newInCart: false,
+            
         }
         this.addToCart = this.addToCart.bind(this);
         this.quitFromCart = this.quitFromCart.bind(this);
         this.changeNewInCart = this.changeNewInCart.bind(this);
     }
+
+
 
     addToCart(addedProductId, addedPriceId, quantity) {
         const inCart = this.state.inCart;

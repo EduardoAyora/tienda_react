@@ -213,6 +213,11 @@ button.dish-item-arrow:hover {
 button.dish-item-add-button {
     margin-left: 1em;
     border-radius: 3px;
+    width: 6em;
+}
+
+.added-to-cart-icon {
+    color: green;
 }
 
 .dish-item-quantity-text-container {
@@ -320,6 +325,7 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
 .new-in-cart-icon {
     position: absolute;
     border-radius: 1.2em;
@@ -333,8 +339,8 @@ footer {
   
 @keyframes added {
     50% {
-        height: 1.7em;
-        width: 1.7em;
+        height: 2em;
+        width: 2em;
         background-color: rgba(247, 203, 51, 0.7);
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 export class DishItem extends React.Component {
 
@@ -9,7 +9,8 @@ export class DishItem extends React.Component {
         super(props);
 
         this.state = {
-            quantity: 1
+            quantity: 1,
+            isIcon: false
         }
 
         this.buttonMinusClick = this.buttonMinusClick.bind(this);
@@ -73,19 +74,38 @@ export class DishItem extends React.Component {
         }
         addToCart(dish.id, pricesArray[0].id, quantity);
 
-        // renderizando icono de nuevo en carrito
+        // renderizando icono de "nuevo en carrito"
         const changeNewInCart = this.props.changeNewInCart;
         changeNewInCart(false);
-        const waitForChange = () => {
+        const waitForChangeInCart = () => {
             changeNewInCart(true);
         }
-        setTimeout(waitForChange, 10);
+        setTimeout(waitForChangeInCart, 10);
+
+        // cambiando estado para el boton "agregar"
+        this.setState({
+            isIcon: true
+        })
+        const waitForChangeButton = () => {
+            this.setState({
+                isIcon: false
+            })
+        }
+        setTimeout(waitForChangeButton, 1000);
     }
 
     render() {
         const dish = this.props.dish;
         const quantity = this.state.quantity;
         const pricesArray = dish.precios;
+
+        // definiendo contenido de boton agregar
+        let addToCartButtonContent = 'Agregar';
+        if(this.state.isIcon === true) {
+            addToCartButtonContent = (
+                <FontAwesomeIcon icon={faCheck} className="fa-lg added-to-cart-icon" />
+            )
+        }
 
         const addToCartComponent = (
             <div className="dish-item-add-container dish-item-add-container-right">
@@ -96,7 +116,7 @@ export class DishItem extends React.Component {
                     <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
                 </div>
                 <button className="dish-item-add-button" 
-                    onClick={this.addToCartClick}>Agregar</button>
+                    onClick={this.addToCartClick}>{addToCartButtonContent}</button>
             </div>
         )
 
