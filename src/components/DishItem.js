@@ -5,18 +5,29 @@ import { faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-
 
 export class DishItem extends React.Component {
 
+    // guarda el id del temporizador para cancelar si se desmonta el componente
+    _timeoutId;
+
     constructor(props) {
         super(props);
 
         this.state = {
             quantity: 1,
-            isIcon: false
+            isIcon: false,
+            priceCounter: 0
         }
 
         this.buttonMinusClick = this.buttonMinusClick.bind(this);
         this.buttonPlusClick = this.buttonPlusClick.bind(this);
         this.inputChange = this.inputChange.bind(this);
         this.addToCartClick = this.addToCartClick.bind(this);
+        this.buttonLeftArrowClick = this.buttonLeftArrowClick.bind(this);
+        this.buttonRightArrowClick = this.buttonRightArrowClick.bind(this);
+    }
+
+    componentWillUnmount() {
+        // quita el temporizador
+        clearTimeout(this._timeoutId);
     }
 
     buttonMinusClick() {
@@ -66,13 +77,14 @@ export class DishItem extends React.Component {
         let quantity = this.state.quantity;
         const pricesArray = dish.precios;
         const addToCart = this.props.addToCart;
+        const priceCounter = this.state.priceCounter;
         if(quantity === ""){
             quantity = 1;
             this.setState({
                 quantity: 1
             })
         }
-        addToCart(dish.id, pricesArray[0].id, quantity);
+        addToCart(dish.id, pricesArray[priceCounter].id, quantity);
 
         // renderizando icono de "nuevo en carrito"
         const changeNewInCart = this.props.changeNewInCart;
@@ -91,7 +103,38 @@ export class DishItem extends React.Component {
                 isIcon: false
             })
         }
-        setTimeout(waitForChangeButton, 1000);
+        // guardando id del timeout para cancelar si el componente se desmonta antes del tiempo
+        this._timeoutId = setTimeout(waitForChangeButton, 1000);
+    }
+
+    buttonRightArrowClick() {
+        const pricesArray = this.props.dish.precios;
+        const priceCounter = this.state.priceCounter;
+        if(priceCounter < (pricesArray.length - 1)) {
+            this.setState({
+                priceCounter: priceCounter + 1
+            })
+        }
+        else {
+            this.setState({
+                priceCounter: 0
+            })
+        }
+    }
+
+    buttonLeftArrowClick() {
+        const pricesArray = this.props.dish.precios;
+        const priceCounter = this.state.priceCounter;
+        if(priceCounter > 0) {
+            this.setState({
+                priceCounter: priceCounter - 1
+            })
+        }
+        else {
+            this.setState({
+                priceCounter: pricesArray.length - 1
+            })
+        }
     }
 
     render() {
@@ -133,17 +176,19 @@ export class DishItem extends React.Component {
             )
         }
         else if(pricesArray.length > 1) {
+            const priceCounter = this.state.priceCounter;
+            const price = pricesArray[priceCounter];
             return (
                 <DishItemContainer dish={dish}>
                     <div className="dish-item-price-arrows-container">
-                        <button type="button" className="dish-item-arrow left-item-arrow" onClick={() => console.log('s')}>
+                        <button type="button" className="dish-item-arrow left-item-arrow" onClick={this.buttonLeftArrowClick}>
                             <FontAwesomeIcon icon={faArrowLeft} className="fa-lg" />
                         </button>
                         <div className="dish-item-price">
-                            <span>{`${pricesArray[0].nombre}:`}</span>
-                            <span>{`$${pricesArray[0].precio}`}</span>
+                            <span>{`${price.nombre}:`}</span>
+                            <span>{`$${price.precio}`}</span>
                         </div>
-                        <button type="button" className="dish-item-arrow right-item-arrow" onClick={() => console.log('s')}>
+                        <button type="button" className="dish-item-arrow right-item-arrow" onClick={this.buttonRightArrowClick}>
                             <FontAwesomeIcon icon={faArrowRight} className="fa-lg" />
                         </button>
                     </div>

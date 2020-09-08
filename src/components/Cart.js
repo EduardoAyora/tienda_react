@@ -48,8 +48,10 @@ export class Cart extends React.Component {
             // sumamos todos los detalles para obtener el total del carrito
             cartTotal += detailTotal;
 
+            // definimos una key que combina el id del plato con el id del precio
+            const key = dish.id.toString() + ',' + price.id.toString();
             return (
-                <Detail key={dish.id} priceName={priceName} dish={dish}
+                <Detail key={key} priceName={priceName} dish={dish}
                     priceValue={priceValue} quantity={quantity} 
                     detailTotal={detailTotal} addToCart={addToCart} 
                     quitFromCart={quitFromCart} cartElement={cartElement} />

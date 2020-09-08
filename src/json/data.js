@@ -16,12 +16,12 @@ const data = [
                         nombre: 'pequeña',
                     },
                     {
-                        id: 1,
+                        id: 2,
                         precio: 2,
                         nombre: 'mediana',
                     },
                     {
-                        id: 1,
+                        id: 3,
                         precio: 3.25,
                         nombre: 'grande',
                     },
@@ -82,12 +82,12 @@ const data = [
                         nombre: 'pequeña',
                     },
                     {
-                        id: 1,
+                        id: 2,
                         precio: 2,
                         nombre: 'mediana',
                     },
                     {
-                        id: 1,
+                        id: 3,
                         precio: 3.25,
                         nombre: 'grande',
                     },
@@ -124,12 +124,12 @@ const data = [
                         nombre: 'pequeña',
                     },
                     {
-                        id: 1,
+                        id: 2,
                         precio: 2,
                         nombre: 'mediana',
                     },
                     {
-                        id: 1,
+                        id: 3,
                         precio: 3.25,
                         nombre: 'grande',
                     },
@@ -147,12 +147,12 @@ const data = [
                         nombre: 'pequeña',
                     },
                     {
-                        id: 1,
+                        id: 2,
                         precio: 2,
                         nombre: 'mediana',
                     },
                     {
-                        id: 1,
+                        id: 3,
                         precio: 3.25,
                         nombre: 'grande',
                     },
@@ -214,12 +214,12 @@ const data = [
                         nombre: 'pequeña',
                     },
                     {
-                        id: 1,
+                        id: 2,
                         precio: 2,
                         nombre: 'mediana',
                     },
                     {
-                        id: 1,
+                        id: 3,
                         precio: 3.25,
                         nombre: 'grande',
                     },
