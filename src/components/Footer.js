@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faShoppingCart, faUserAlt } from '@fortawesome/free-solid-svg-icons'
 
 export function Footer({newInCart, activePage}) {
-    // agregando clase para ver un color en el icono de pagina activa
+    // agregando clase para ver un color en el icono de pagina activa 
     let homeClassName = 'fa-lg';
     let cartClassName = 'fa-lg';
     let userClassName = 'fa-lg';

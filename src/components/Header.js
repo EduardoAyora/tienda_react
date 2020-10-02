@@ -3,9 +3,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-export function Header(props) {
-    const pageName = props.pageName;
-    const history = props.history;
+export function Header({pageName, history}) {
     let arrow;
     if(history) {
         arrow = (

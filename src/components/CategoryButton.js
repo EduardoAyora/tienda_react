@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 export function CategoryButton(props) {
-    const category = props.category
+    const category = props.category 
     return(
         <Link to={`/categorias/${category.slug}`} className="category-link">
             <img src={process.env.PUBLIC_URL + category.imagen} className="category-image" alt={category.nombre} />

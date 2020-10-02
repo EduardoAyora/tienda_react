@@ -13,7 +13,7 @@ export class User extends React.Component {
     render() {
         return (
             <div>
-                User
+                User 
             </div>
         )
     }

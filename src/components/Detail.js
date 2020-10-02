@@ -3,76 +3,57 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-export class Detail extends React.Component {
+export function Detail({dish, priceName, priceValue, quantity, detailTotal, cartElement, addToCart, quitFromCart}) {
 
-    constructor(props) {
-        super(props);
-        this.buttonMinusClick = this.buttonMinusClick.bind(this);
-        this.buttonPlusClick = this.buttonPlusClick.bind(this);
-        this.buttonQuitClick = this.buttonQuitClick.bind(this);
-    }
-
-    buttonMinusClick() {
-        const cartElement = this.props.cartElement;
+    function buttonMinusClick() {
         // solo cuando es mayor a uno ya que no queremos tener cantidades negativas
         if(cartElement.quantity > 1) {
-            this.props.addToCart(cartElement.productId, cartElement.priceId, -1);
+            addToCart(cartElement.productId, cartElement.priceId, -1);
         }
     }
 
-    buttonPlusClick() {
-        const cartElement = this.props.cartElement;
-        this.props.addToCart(cartElement.productId, cartElement.priceId, 1);
+    function buttonPlusClick() {
+        addToCart(cartElement.productId, cartElement.priceId, 1);
     }
 
-    buttonQuitClick() {
-        const cartElement = this.props.cartElement;
-        this.props.quitFromCart(cartElement.productId, cartElement.priceId);
+    function buttonQuitClick() {
+        quitFromCart(cartElement.productId, cartElement.priceId);
     }
 
-    render() {
-        const dish = this.props.dish;
-        const priceName = this.props.priceName;
-        const priceValue = this.props.priceValue;
-        const quantity = this.props.quantity;
-        const detailTotal = this.props.detailTotal;
+    return(
+        <li className="dish-item dish-item-detail">
+            <div className="dish-item-image-container">
+                <img src={process.env.PUBLIC_URL + dish.imagen} alt={dish.nombre} />
+            </div>
 
-        return(
-            <li className="dish-item dish-item-detail">
-                <div className="dish-item-image-container">
-                    <img src={process.env.PUBLIC_URL + dish.imagen} alt={dish.nombre} />
+            <div className="dish-item-info">
+                <h4 className="dish-item-name">{dish.nombre}</h4>
+                <div className="dish-item-price">
+                    <span>{`${priceName}:`}</span>
+                    <span>{`$${priceValue}`}</span>
                 </div>
-    
-                <div className="dish-item-info">
-                    <h4 className="dish-item-name">{dish.nombre}</h4>
-                    <div className="dish-item-price">
-                        <span>{`${priceName}:`}</span>
-                        <span>{`$${priceValue}`}</span>
+
+                <div className="dish-item-add-container dish-item-add-container-left">
+                    <div className="dish-item-input-group">
+                        <button className="dish-item-button-minus" onClick={buttonMinusClick}>-</button>
+                        <span className="dish-item-quantity-text-container">
+                            <span className="dish-item-quantity-text">{quantity}</span>
+                        </span>
+                        <button className="dish-item-button-plus" onClick={buttonPlusClick}>+</button>
                     </div>
-
-                    <div className="dish-item-add-container dish-item-add-container-left">
-                        <div className="dish-item-input-group">
-                            <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
-                            <span className="dish-item-quantity-text-container">
-                                <span className="dish-item-quantity-text">{quantity}</span>
-                            </span>
-                            <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
-                        </div>
-                    </div>
-
-                    <span className="dish-item-detail-price">
-                        {`$${detailTotal}`}
-                    </span>
                 </div>
-    
-                <div className="quit">
-                    <button onClick={this.buttonQuitClick}>
-                        <FontAwesomeIcon icon={faTimes} className="fa-lg" />
-                    </button>
-                </div>
-            </li>
-        )
-    }
 
-    
+                <span className="dish-item-detail-price">
+                    {`$${detailTotal}`}
+                </span>
+            </div>
+
+            <div className="quit">
+                <button onClick={buttonQuitClick}>
+                    <FontAwesomeIcon icon={faTimes} className="fa-lg" />
+                </button>
+            </div>
+        </li>
+    )
+
 }

@@ -20,7 +20,7 @@ export function DishItem({dish, addToCart, changeNewInCart}) {
             clearTimeout(timeoutCartId.current)
             clearTimeout(timeoutButtonId.current)
         }
-    })
+    }, [])
 
     function buttonMinusClick() {
         if(quantity > 1) {
