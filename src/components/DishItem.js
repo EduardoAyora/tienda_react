@@ -1,211 +1,167 @@
-import React from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-export class DishItem extends React.Component {
+export function DishItem({dish, addToCart, changeNewInCart}) {
 
-    // guarda el id del temporizador para cancelar si se desmonta el componente
-    _timeoutId;
+    const timeoutButtonId = useRef()
+    const timeoutCartId = useRef()
 
-    constructor(props) {
-        super(props);
+    const [quantity, setQuantity] = useState(1)
+    const [isIcon, setIsIcon] = useState(false)
+    const [priceCounter, setPriceCounter] = useState(0)
 
-        this.state = {
-            quantity: 1,
-            isIcon: false,
-            priceCounter: 0
+    const pricesArray = dish.precios
+    
+    useEffect(() => {
+        // quitando listeners al desmontar
+        return () => {
+            clearTimeout(timeoutCartId.current)
+            clearTimeout(timeoutButtonId.current)
         }
+    })
 
-        this.buttonMinusClick = this.buttonMinusClick.bind(this);
-        this.buttonPlusClick = this.buttonPlusClick.bind(this);
-        this.inputChange = this.inputChange.bind(this);
-        this.addToCartClick = this.addToCartClick.bind(this);
-        this.buttonLeftArrowClick = this.buttonLeftArrowClick.bind(this);
-        this.buttonRightArrowClick = this.buttonRightArrowClick.bind(this);
-    }
-
-    componentWillUnmount() {
-        // quita el temporizador
-        clearTimeout(this._timeoutId);
-    }
-
-    buttonMinusClick() {
-        let quantity = this.state.quantity;
+    function buttonMinusClick() {
         if(quantity > 1) {
-            this.setState({
-                quantity: quantity - 1
-            })
+            setQuantity(prevQuantity => prevQuantity - 1)
         }
     }
 
-    buttonPlusClick() {
-        let quantity = this.state.quantity;
+    function buttonPlusClick() {
         if(quantity !== '') {
-            this.setState({
-                quantity: quantity + 1
-            })
+            setQuantity(prevQuantity => prevQuantity + 1)
         } else {
-            this.setState({
-                quantity: 1
-            })
+            setQuantity(1)
         }
     }
 
-    inputChange(event) {
+    function inputChange(event) {
         let value = event.target.value
         if (value !== '') {
             if(value > 0) {
-                this.setState({
-                    quantity: parseInt(value)
-                })
+                setQuantity(parseInt(value))
             } else {
-                this.setState({
-                    quantity: 1
-                })
+                setQuantity(1)
             }
         }
         else {
-            this.setState({
-                quantity: value
-            })
+            setQuantity(value)
         }
     }
 
-    addToCartClick() {
-        const dish = this.props.dish;
-        let quantity = this.state.quantity;
-        const pricesArray = dish.precios;
-        const addToCart = this.props.addToCart;
-        const priceCounter = this.state.priceCounter;
-        if(quantity === ""){
-            quantity = 1;
-            this.setState({
-                quantity: 1
-            })
+    function addToCartClick() {
+        let tempQuantity = quantity
+        if(tempQuantity === ""){
+            tempQuantity = 1
+            setQuantity(tempQuantity)
         }
-        addToCart(dish.id, pricesArray[priceCounter].id, quantity);
+        addToCart(dish.id, pricesArray[priceCounter].id, tempQuantity);
 
-        // renderizando icono de "nuevo en carrito"
-        const changeNewInCart = this.props.changeNewInCart;
-        changeNewInCart(false);
+        // indicador de nuevo elemento en carrito
+        changeNewInCart(false)
         const waitForChangeInCart = () => {
-            changeNewInCart(true);
+            changeNewInCart(true)
         }
-        setTimeout(waitForChangeInCart, 10);
+        // guardando id del timeout para quitar listener si el componente se desmonta
+        timeoutCartId.current = setTimeout(waitForChangeInCart, 10)
 
-        // cambiando estado para el boton "agregar"
-        this.setState({
-            isIcon: true
-        })
+        // indicador de agregado en el boton
+        setIsIcon(true)
         const waitForChangeButton = () => {
-            this.setState({
-                isIcon: false
-            })
+            setIsIcon(false)
         }
-        // guardando id del timeout para cancelar si el componente se desmonta antes del tiempo
-        this._timeoutId = setTimeout(waitForChangeButton, 1000);
+        // guardando id del timeout para quitar listener si el componente se desmonta
+        timeoutButtonId.current = setTimeout(waitForChangeButton, 1000)
     }
 
-    buttonRightArrowClick() {
-        const pricesArray = this.props.dish.precios;
-        const priceCounter = this.state.priceCounter;
+    function buttonRightArrowClick() {
         if(priceCounter < (pricesArray.length - 1)) {
-            this.setState({
-                priceCounter: priceCounter + 1
-            })
+            setPriceCounter(
+                prevPriceCounter => prevPriceCounter + 1
+            )
         }
         else {
-            this.setState({
-                priceCounter: 0
-            })
+            setPriceCounter(0)
         }
     }
 
-    buttonLeftArrowClick() {
-        const pricesArray = this.props.dish.precios;
-        const priceCounter = this.state.priceCounter;
+    function buttonLeftArrowClick() {
         if(priceCounter > 0) {
-            this.setState({
-                priceCounter: priceCounter - 1
-            })
+            setPriceCounter(
+                prevPriceCounter => prevPriceCounter - 1
+            )
         }
         else {
-            this.setState({
-                priceCounter: pricesArray.length - 1
-            })
+            setPriceCounter(pricesArray.length - 1)
         }
     }
 
-    render() {
-        const dish = this.props.dish;
-        const quantity = this.state.quantity;
-        const pricesArray = dish.precios;
-
-        // definiendo contenido de boton agregar
-        let addToCartButtonContent = 'Agregar';
-        if(this.state.isIcon === true) {
-            addToCartButtonContent = (
-                <FontAwesomeIcon icon={faCheck} className="fa-lg added-to-cart-icon" />
-            )
-        }
-
-        const addToCartComponent = (
-            <div className="dish-item-add-container dish-item-add-container-right">
-                <div className="dish-item-input-group">
-                    <button className="dish-item-button-minus" onClick={this.buttonMinusClick}>-</button>
-                    <input type="number" value={quantity} className="dish-item-quantity-field"
-                        onChange={this.inputChange} />
-                    <button className="dish-item-button-plus" onClick={this.buttonPlusClick}>+</button>
-                </div>
-                <button className="dish-item-add-button" 
-                    onClick={this.addToCartClick}>{addToCartButtonContent}</button>
-            </div>
+    // definiendo contenido de boton agregar
+    let addToCartButtonContent = 'Agregar';
+    if(isIcon === true) {
+        addToCartButtonContent = (
+            <FontAwesomeIcon icon={faCheck} className="fa-lg added-to-cart-icon" />
         )
+    }
 
-        if(pricesArray.length === 1) {
-            return (
-                <DishItemContainer dish={dish}>
+    // renderizado de grupo para modificar cantidad y boton de agregar
+    const addToCartComponent = (
+        <div className="dish-item-add-container dish-item-add-container-right">
+            <div className="dish-item-input-group">
+                <button className="dish-item-button-minus" onClick={buttonMinusClick}>-</button>
+                <input type="number" value={quantity} className="dish-item-quantity-field"
+                    onChange={inputChange} />
+                <button className="dish-item-button-plus" onClick={buttonPlusClick}>+</button>
+            </div>
+            <button className="dish-item-add-button" 
+                onClick={addToCartClick}>{addToCartButtonContent}</button>
+        </div>
+    )
+
+    // definiendo si renderizar el precio unico o incluir flechas para distintos precios
+    if(pricesArray.length === 1) {
+        return (
+            <DishItemContainer dish={dish}>
+                <div className="dish-item-price">
+                    <span>{`${pricesArray[0].nombre}:`}</span>
+                    <span>{`$${pricesArray[0].precio}`}</span>
+                </div>
+                
+                {addToCartComponent}
+            </DishItemContainer>
+        )
+    }
+    else if(pricesArray.length > 1) {
+        const price = pricesArray[priceCounter];
+        return (
+            <DishItemContainer dish={dish}>
+                <div className="dish-item-price-arrows-container">
+                    <button type="button" className="dish-item-arrow left-item-arrow" onClick={buttonLeftArrowClick}>
+                        <FontAwesomeIcon icon={faArrowLeft} className="fa-lg" />
+                    </button>
                     <div className="dish-item-price">
-                        <span>{`${pricesArray[0].nombre}:`}</span>
-                        <span>{`$${pricesArray[0].precio}`}</span>
+                        <span>{`${price.nombre}:`}</span>
+                        <span>{`$${price.precio}`}</span>
                     </div>
-                    
-                    {addToCartComponent}
-                </DishItemContainer>
-            )
-        }
-        else if(pricesArray.length > 1) {
-            const priceCounter = this.state.priceCounter;
-            const price = pricesArray[priceCounter];
-            return (
-                <DishItemContainer dish={dish}>
-                    <div className="dish-item-price-arrows-container">
-                        <button type="button" className="dish-item-arrow left-item-arrow" onClick={this.buttonLeftArrowClick}>
-                            <FontAwesomeIcon icon={faArrowLeft} className="fa-lg" />
-                        </button>
-                        <div className="dish-item-price">
-                            <span>{`${price.nombre}:`}</span>
-                            <span>{`$${price.precio}`}</span>
-                        </div>
-                        <button type="button" className="dish-item-arrow right-item-arrow" onClick={this.buttonRightArrowClick}>
-                            <FontAwesomeIcon icon={faArrowRight} className="fa-lg" />
-                        </button>
-                    </div>
+                    <button type="button" className="dish-item-arrow right-item-arrow" onClick={buttonRightArrowClick}>
+                        <FontAwesomeIcon icon={faArrowRight} className="fa-lg" />
+                    </button>
+                </div>
 
-                    {addToCartComponent}
-                </DishItemContainer>
-            )
-        }
-        else {
-            return (
-                <DishItemContainer dish={dish}></DishItemContainer>
-            )
-        }
+                {addToCartComponent}
+            </DishItemContainer>
+        )
+    }
+    else {
+        return (
+            <DishItemContainer dish={dish}></DishItemContainer>
+        )
     }
 
 }
 
+// Contenedor del DishItem
 function DishItemContainer(props) {
     const dish = props.dish;
     return (
