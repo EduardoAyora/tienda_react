@@ -11,3 +11,359 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+header {
+    height: 40px;
+    position: relative;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-title {
+    font-weight: 700;
+    font-size: large;
+}
+
+.header-button {
+    position: absolute;
+    left: 0;
+    border-style: none;
+    background-color: transparent;
+}
+
+.main-container {
+    margin-bottom: 60px;
+}
+
+.discovery-container {
+    padding: 2em 1em;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5em;
+    grid-auto-rows: minmax(150px, 150px);
+}
+
+.category-link {
+    position: relative;
+    background-color: white;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.1);
+    bottom: 0px;
+    transition: .5s;
+}
+
+.category-link:hover {
+    bottom: 10px;
+    background-color: #f7cb33;
+    box-shadow: 0px 20px 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.category-image {
+    max-height: 70px;
+}
+
+.category-description-container {
+    margin-top: .8em;
+    font-weight: 700;
+}
+
+ul.items-container {
+    margin: 0px;
+    list-style: none;
+    padding: 0;
+}
+
+ul.category-container {
+    padding: 2em 0;
+}
+
+ul.cart-container {
+    border-top: solid 1px rgba(0, 0, 0, 0.6);
+}
+
+li.dish-item {
+    background-color: white;
+    display: flex;
+    height: 100px;
+    padding: .8em;
+    position: relative;
+}
+
+li.dish-item-add {
+    margin-bottom: 1em;
+    box-shadow: 0px 5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+li.dish-item-detail {
+    border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+}
+
+.dish-item-detail-price {
+    display: flex;
+    align-items: flex-end;
+    font-size: 1em;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.dish-item-price-arrows-container {
+    display: flex;
+    width: 100%;
+    position: relative;
+    justify-content: center;
+}
+
+.quit {
+    position: absolute;
+    right: .8em;
+    top: .8em;
+}
+
+.quit button {
+    background-color: transparent;
+    border-style: none;
+    outline: none;
+}
+
+.quit button:hover {
+    color: #f7cb33;
+    cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) {
+    .dish-item-price-arrows-container {
+        width: 300px;
+    }
+}
+
+button.dish-item-arrow {
+    background-color: rgba(247, 203, 51, 0.5);
+    border-style: none;
+    outline: none;
+    position: absolute;
+    height: 100%;
+    width: 3em;
+    cursor: pointer;
+}
+
+button.left-item-arrow {
+    left: 0px;
+    border-top-left-radius: 2em;
+    border-bottom-left-radius: 2em;
+}
+
+button.right-item-arrow {
+    right: 0px;
+    border-top-right-radius: 2em;
+    border-bottom-right-radius: 2em;
+}
+
+button.dish-item-arrow:hover {
+    background-color: rgba(247, 203, 51, 0.9);
+}
+
+.dish-item-price {
+    height: 2em;
+    display: flex;
+    align-items: center;
+}
+
+.dish-item-price span {
+    margin: 0 5px 0 5px;
+}
+
+.dish-item-add-container {
+    display: flex;
+    height: 2em;
+    position: absolute;
+    bottom: 0px;
+}
+
+.dish-item-add-container-right {
+    right: 0px;
+}
+
+.dish-item-add-container-left {
+    left: 0px;
+}
+
+.dish-item-input-group {
+    border: solid 1px rgba(247, 203, 51, 0.5);
+    border-radius: 3px;
+}
+
+.dish-item-input-group button {
+    width: 2.5em;
+    cursor: pointer;
+}
+
+.dish-item-add-container button {
+    background-color: rgba(247, 203, 51, 0.5);
+    border-style: none;
+    height: 100%;
+    outline: none;
+    cursor: pointer;
+}
+
+.dish-item-add-container button:hover {
+    background-color: rgba(247, 203, 51, 0.9);
+}
+
+.dish-item-add-container input {
+    border-style: none;
+    height: 80%;
+    width: 30px;
+}
+
+button.dish-item-add-button {
+    margin-left: 1em;
+    border-radius: 3px;
+    width: 6em;
+}
+
+.added-to-cart-icon {
+    color: green;
+}
+
+.dish-item-quantity-text-container {
+    display: inline-block;
+    width: 2em;
+}
+
+.dish-item-quantity-text {
+    display: flex;
+    justify-content: center;
+}
+
+.dish-item-image-container {
+    height: 100%;
+    width: 120px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+}
+
+.dish-item img {
+    height: 100%;
+}
+
+.dish-item-info {
+    margin-left: .8em;
+    width: 100%;
+    position: relative;
+}
+
+.dish-item-name {
+    margin: 0px;
+    margin-bottom: .4em;
+}
+
+.cart-total-container {
+    position: relative;
+    height: 7em;
+}
+
+.cart-total {
+    position: absolute;
+    top: 1em;
+    right: .8em;
+    font-weight: bold;
+}
+
+.cart-total-button {
+    position: absolute;
+    top: 4em;
+    right: .8em;
+    background-color: #f7cb33;
+    border-radius: 3px;
+    outline: none;
+    border-style: none;
+    height: 3em;
+    padding: 0 1em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.empty-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    font-size: 2em;
+    font-weight: 700;
+    color: gray;
+}
+
+footer {
+    position: fixed;
+    width: 100vw;
+    background-color: white;
+    bottom: 0px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    justify-content: space-around;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: gray;
+    position: relative;
+}
+
+.active-footer-icon {
+    color: #FFDA59;
+}
+
+.new-in-cart-icon-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-in-cart-icon {
+    position: absolute;
+    border-radius: 1.2em;
+    height: 1.2em;
+    width: 1.2em;
+    background-color: rgb(247, 203, 51);
+    animation-timing-function: linear;
+    animation-duration: .5s;
+    animation-name: added;
+}
+  
+@keyframes added {
+    50% {
+        height: 2em;
+        width: 2em;
+        background-color: rgba(247, 203, 51, 0.7);
+    }
+
+    100% {
+        height: 1.2em;
+        width: 1.2em;
+    }
+}

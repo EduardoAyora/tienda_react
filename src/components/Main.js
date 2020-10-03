@@ -7,11 +7,7 @@ import {Cart} from './Cart';
 import {User} from './User';
 import {Category} from './Category';
 
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 
 import dataJson from "../json/data";
 import inCartJson from "../json/inCart";
@@ -66,7 +62,7 @@ export function Main() {
     }
 
     return(
-        <Router basename={'/tienda_react'}>
+        <>
             <div className="main-container">
                 <Switch>
                     <Route path="/carrito">
@@ -89,7 +85,7 @@ export function Main() {
                 </Switch>
             </div>
             <Footer newInCart={newInCart} activePage={activePage} />
-        </Router>
+        </>
     )
 
 }
