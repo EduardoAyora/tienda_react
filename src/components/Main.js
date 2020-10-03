@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {Header} from './Header';
 import {Footer} from './Footer';
@@ -13,47 +13,35 @@ import {
     Route
 } from "react-router-dom";
 
-import data from "../json/data";
-import inCart from "../json/inCart";
+import dataJson from "../json/data";
+import inCartJson from "../json/inCart";
 
-export class Main extends React.Component {
-    constructor(props) {
-        super(props);
+export function Main() {
 
-        this.state = {
-            data: data,
-            inCart: inCart,
-            newInCart: false,
-            activePage: ''
-        }
-        this.addToCart = this.addToCart.bind(this);
-        this.quitFromCart = this.quitFromCart.bind(this);
-        this.changeNewInCart = this.changeNewInCart.bind(this);
-        this.changeActivePage = this.changeActivePage.bind(this);
+    const data = dataJson
+    const [inCart, setInCart] = useState(inCartJson)
+    const [newInCart, setNewInCart] = useState(false)
+    const [activePage, setActivePage] = useState('')
+
+    function changeActivePage(string) {
+        setActivePage(string)
     }
 
-    changeActivePage(string) {
-        this.setState({
-            activePage: string
-        })
-    }
-
-    addToCart(addedProductId, addedPriceId, quantity) {
-        const inCart = this.state.inCart;
+    function addToCart(addedProductId, addedPriceId, quantity) {
         const index = inCart.findIndex((elementInCart) => (
             (elementInCart.productId === addedProductId) && (elementInCart.priceId === addedPriceId)
         ));
         if(index === -1) {
-            this.setState({
-                inCart: [
-                    ...inCart,
+            setInCart(
+                prevInCart => [
+                    ...prevInCart,
                     {
                         productId: addedProductId,
                         priceId: addedPriceId,
                         quantity: quantity
                     }
                 ]
-            })
+            )
         }
         else {
             const newInCart = [...inCart];
@@ -62,54 +50,46 @@ export class Main extends React.Component {
                 priceId: addedPriceId,
                 quantity: quantity + inCart[index].quantity
             };
-            this.setState({
-                inCart: newInCart
-            })
+            setInCart(newInCart)
         }
     }
 
-    quitFromCart(removedProductId, removedPriceId) {
-        const inCart = this.state.inCart;
+    function quitFromCart(removedProductId, removedPriceId) {
         const newInCart = inCart.filter(elementInCart => (
             (elementInCart.productId !== removedProductId) || (elementInCart.priceId !== removedPriceId)
         ))
-        this.setState({
-            inCart: newInCart
-        })
+        setInCart(newInCart)
     }
 
-    changeNewInCart(boolean) {
-        this.setState({
-            newInCart: boolean
-        })
+    function changeNewInCart(boolean) {
+        setNewInCart(boolean)
     }
 
-    render() {
-        return(
-            <Router basename={'/tienda_react'}>
-                <div className="main-container">
-                    <Switch>
-                        <Route path="/carrito">
-                            <Header pageName="Carrito" />
-                            <Cart data={this.state.data} inCart={this.state.inCart}
-                                addToCart={this.addToCart} quitFromCart={this.quitFromCart}
-                                changeNewInCart={this.changeNewInCart} changeActivePage={this.changeActivePage} />
-                        </Route>
-                        <Route path="/usuario">
-                            <User changeActivePage={this.changeActivePage} />
-                        </Route>
-                        <Route path='/categorias/:slug' render={(props) =>
-                            <Category {...props} data={this.state.data} addToCart={this.addToCart}
-                                changeNewInCart={this.changeNewInCart} changeActivePage={this.changeActivePage} />
-                        } />
-                        <Route path="/">
-                            <Header pageName="Categorías" />
-                            <Discovery categories={this.state.data} changeActivePage={this.changeActivePage} />
-                        </Route>
-                    </Switch>
-                </div>
-                <Footer newInCart={this.state.newInCart} activePage={this.state.activePage} />
-            </Router>
-        )
-    }
+    return(
+        <Router basename={'/tienda_react'}>
+            <div className="main-container">
+                <Switch>
+                    <Route path="/carrito">
+                        <Header pageName="Carrito" />
+                        <Cart data={data} inCart={inCart}
+                            addToCart={addToCart} quitFromCart={quitFromCart}
+                            changeNewInCart={changeNewInCart} changeActivePage={changeActivePage} />
+                    </Route>
+                    <Route path="/usuario">
+                        <User changeActivePage={changeActivePage} />
+                    </Route>
+                    <Route path='/categorias/:slug' render={(props) =>
+                        <Category {...props} data={data} addToCart={addToCart}
+                            changeNewInCart={changeNewInCart} changeActivePage={changeActivePage} />
+                    } />
+                    <Route path="/">
+                        <Header pageName="Categorías" />
+                        <Discovery categories={data} changeActivePage={changeActivePage} />
+                    </Route>
+                </Switch>
+            </div>
+            <Footer newInCart={newInCart} activePage={activePage} />
+        </Router>
+    )
+
 }
