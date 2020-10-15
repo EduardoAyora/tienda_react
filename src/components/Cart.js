@@ -1,5 +1,6 @@
-import React, {useEffect} from 'react';
-import {Detail} from './Detail';
+import React, {useEffect} from 'react'
+import {Detail} from './Detail'
+import axios from 'axios'
 
 export function Cart({changeNewInCart, changeActivePage, data, inCart, addToCart, quitFromCart}) {
 
@@ -13,6 +14,18 @@ export function Cart({changeNewInCart, changeActivePage, data, inCart, addToCart
             document.body.removeAttribute("style")
         }
     }, [changeNewInCart, changeActivePage])
+
+    function handlePurchase() {
+        axios.post('http://localhost:1100/orders', {
+            tableNumber: 3
+        }).then(res => {
+            console.log(res.data)
+        })
+
+        // axios.get('http://localhost:1100/orders').then(res => {
+        //     console.log(res.data)
+        // })
+    }
 
     let cartTotal = 0;
 
@@ -54,7 +67,7 @@ export function Cart({changeNewInCart, changeActivePage, data, inCart, addToCart
         )
     })
 
-    cartTotal = Math.round(cartTotal * 100) / 100;
+    cartTotal = Math.round(cartTotal * 100) / 100
 
     if(details.length === 0) {
         return (
@@ -71,7 +84,7 @@ export function Cart({changeNewInCart, changeActivePage, data, inCart, addToCart
                 </ul>
                 <div className="cart-total-container">
                     <div className="cart-total">Total: ${cartTotal}</div>
-                    <button className="cart-total-button">Finalizar Compra</button>
+                    <button onClick={handlePurchase} className="cart-total-button">Finalizar Compra</button>
                 </div>
             </div>
         )
