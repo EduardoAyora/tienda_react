@@ -17,9 +17,11 @@ export function Cart({changeNewInCart, changeActivePage, data, inCart, addToCart
 
     function handlePurchase() {
         axios.post('http://localhost:1100/orders', {
-            tableNumber: 3
+            // tableNumber: 3
         }).then(res => {
             console.log(res.data)
+        }).catch(err => {
+            console.log(err.response.data.message)
         })
 
         // axios.get('http://localhost:1100/orders').then(res => {
