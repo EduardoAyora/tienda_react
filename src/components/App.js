@@ -1,11 +1,14 @@
 import React from 'react';
 import {Main} from './Main';
 import {BrowserRouter as Router} from "react-router-dom";
+import {CategoriesProvider} from '../context/CategoriesContext'
 
 function App() {
   return (
     <Router basename={'/tienda_react'}>
-      <Main />
+      <CategoriesProvider>
+        <Main />
+      </CategoriesProvider>
     </Router>
   );
 }

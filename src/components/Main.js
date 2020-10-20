@@ -9,12 +9,10 @@ import {Category} from './Category';
 
 import {Switch, Route} from "react-router-dom";
 
-import dataJson from "../json/data";
 import inCartJson from "../json/inCart";
 
 export function Main() {
 
-    const data = dataJson
     const [inCart, setInCart] = useState(inCartJson)
     const [newInCart, setNewInCart] = useState(false)
     const [activePage, setActivePage] = useState('')
@@ -67,7 +65,7 @@ export function Main() {
                 <Switch>
                     <Route path="/carrito">
                         <Header pageName="Carrito" />
-                        <Cart data={data} inCart={inCart}
+                        <Cart inCart={inCart}
                             addToCart={addToCart} quitFromCart={quitFromCart}
                             changeNewInCart={changeNewInCart} changeActivePage={changeActivePage} />
                     </Route>
@@ -75,12 +73,12 @@ export function Main() {
                         <User changeActivePage={changeActivePage} />
                     </Route>
                     <Route path='/categorias/:slug' render={(props) =>
-                        <Category {...props} data={data} addToCart={addToCart}
+                        <Category {...props} addToCart={addToCart}
                             changeNewInCart={changeNewInCart} changeActivePage={changeActivePage} />
                     } />
                     <Route path="/">
                         <Header pageName="Categorías" />
-                        <Discovery categories={data} changeActivePage={changeActivePage} />
+                        <Discovery changeActivePage={changeActivePage} />
                     </Route>
                 </Switch>
             </div>

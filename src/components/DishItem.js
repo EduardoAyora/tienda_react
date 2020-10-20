@@ -3,7 +3,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-export function DishItem({dish, addToCart, changeNewInCart}) {
+export function DishItem({product, addToCart, changeNewInCart}) {
 
     const timeoutButtonId = useRef()
     const timeoutCartId = useRef()
@@ -12,7 +12,7 @@ export function DishItem({dish, addToCart, changeNewInCart}) {
     const [isIcon, setIsIcon] = useState(false)
     const [priceCounter, setPriceCounter] = useState(0)
 
-    const pricesArray = dish.precios
+    const pricesArray = product.prices
     
     useEffect(() => {
         // quitando listeners al desmontar
@@ -56,7 +56,7 @@ export function DishItem({dish, addToCart, changeNewInCart}) {
             tempQuantity = 1
             setQuantity(tempQuantity)
         }
-        addToCart(dish.id, pricesArray[priceCounter].id, tempQuantity);
+        addToCart(product._id, pricesArray[priceCounter]._id, tempQuantity);
 
         // indicador de nuevo elemento en carrito
         changeNewInCart(false)
@@ -122,10 +122,10 @@ export function DishItem({dish, addToCart, changeNewInCart}) {
     // definiendo si renderizar el precio unico o incluir flechas para distintos precios
     if(pricesArray.length === 1) {
         return (
-            <DishItemContainer dish={dish}>
+            <DishItemContainer product={product}>
                 <div className="dish-item-price">
-                    <span>{`${pricesArray[0].nombre}:`}</span>
-                    <span>{`$${pricesArray[0].precio}`}</span>
+                    <span>{`${pricesArray[0].description}:`}</span>
+                    <span>{`$${pricesArray[0].value}`}</span>
                 </div>
                 
                 {addToCartComponent}
@@ -135,14 +135,14 @@ export function DishItem({dish, addToCart, changeNewInCart}) {
     else if(pricesArray.length > 1) {
         const price = pricesArray[priceCounter];
         return (
-            <DishItemContainer dish={dish}>
+            <DishItemContainer product={product}>
                 <div className="dish-item-price-arrows-container">
                     <button type="button" className="dish-item-arrow left-item-arrow" onClick={buttonLeftArrowClick}>
                         <FontAwesomeIcon icon={faArrowLeft} className="fa-lg" />
                     </button>
                     <div className="dish-item-price">
-                        <span>{`${price.nombre}:`}</span>
-                        <span>{`$${price.precio}`}</span>
+                        <span>{`${price.description}:`}</span>
+                        <span>{`$${price.value}`}</span>
                     </div>
                     <button type="button" className="dish-item-arrow right-item-arrow" onClick={buttonRightArrowClick}>
                         <FontAwesomeIcon icon={faArrowRight} className="fa-lg" />
@@ -155,23 +155,22 @@ export function DishItem({dish, addToCart, changeNewInCart}) {
     }
     else {
         return (
-            <DishItemContainer dish={dish}></DishItemContainer>
+            <DishItemContainer product={product}></DishItemContainer>
         )
     }
 
 }
 
 // Contenedor del DishItem
-function DishItemContainer(props) {
-    const dish = props.dish;
+function DishItemContainer({product, children}) {
     return (
         <li className="dish-item dish-item-add">
             <div className="dish-item-image-container">
-                <img src={process.env.PUBLIC_URL + dish.imagen} alt={dish.nombre} />
+                <img src={process.env.PUBLIC_URL + product.image_url} alt={product.name} />
             </div>
             <div className="dish-item-info">
-                <h4 className="dish-item-name">{dish.nombre}</h4>
-                {props.children}
+                <h4 className="dish-item-name">{product.name}</h4>
+                {children}
             </div>
         </li>
     )
