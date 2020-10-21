@@ -21,8 +21,13 @@ export function Category({match, history, addToCart, changeNewInCart, changeActi
                 if (typeof category.products[0] !== 'object') {
                     axios.get(`http://localhost:1100/categories/${category.slug}/products`).then(res => {
                         setCategories(prevCategories => {
-                            let newCategories = prevCategories.filter(({slug}) => slug !== category.slug)
-                            return [...newCategories, res.data]
+                            const newCategories = prevCategories.map(prevCategorie => {
+                                if(prevCategorie.slug === category.slug) {
+                                    return prevCategorie = res.data
+                                }
+                                return prevCategorie
+                            })
+                            return newCategories
                         })
                         setLoading(false)
                     })
