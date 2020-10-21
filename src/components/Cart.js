@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react'
 import {Detail} from './Detail'
 import axios from 'axios'
+import {useCategories} from '../context/CategoriesContext'
 
-export function Cart({changeNewInCart, changeActivePage, data, inCart, addToCart, quitFromCart}) {
+export function Cart({changeNewInCart, changeActivePage, inCart, addToCart, quitFromCart}) {
 
     useEffect(() => {
         changeNewInCart(false)
@@ -30,29 +31,29 @@ export function Cart({changeNewInCart, changeActivePage, data, inCart, addToCart
     }
 
     let cartTotal = 0;
+    const categories = useCategories().categories
 
     // renderizamos los detalles
     const details = inCart.map((cartElement) => {
         let dish;
+
         // recuperamos los datos del plato con su id
-        data.forEach((category) => {
-            category.platos.forEach((plato) => {
-                if(plato.id === cartElement.productId) {
+        // esto vamos a cambiar por local storage
+        categories.forEach((category) => {
+            category.products.forEach((plato) => {
+                if(plato._id === cartElement.productId) {
                     dish = plato;
                 }
             })
         })
-        if(dish == null) {
-            // codigo para cuando se haya eliminado un producto de la base,
-            // y el usuario haya tenido ese producto en su carrito
-        }
 
         // recuperamos los datos del precio con su id
-        const price = dish.precios.find((price) => (
-            price.id === cartElement.priceId
+        const price = dish.prices.find((price) => (
+            price._id === cartElement.priceId
         ));
-        const priceName = price.nombre;
-        const priceValue = price.precio;
+        
+        const priceName = price.description;
+        const priceValue = price.value;
         const quantity = cartElement.quantity;
         const detailTotal = Math.round(priceValue * quantity * 100) / 100;
 
@@ -60,7 +61,7 @@ export function Cart({changeNewInCart, changeActivePage, data, inCart, addToCart
         cartTotal += detailTotal;
 
         // definimos una key que combina el id del plato con el id del precio
-        const key = dish.id.toString() + ',' + price.id.toString();
+        const key = dish._id.toString() + ',' + price._id.toString();
         return (
             <Detail key={key} priceName={priceName} dish={dish}
                 priceValue={priceValue} quantity={quantity} 

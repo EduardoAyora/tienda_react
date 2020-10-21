@@ -23,11 +23,11 @@ export function Detail({dish, priceName, priceValue, quantity, detailTotal, cart
     return(
         <li className="dish-item dish-item-detail">
             <div className="dish-item-image-container">
-                <img src={process.env.PUBLIC_URL + dish.imagen} alt={dish.nombre} />
+                <img src={process.env.PUBLIC_URL + dish.image_url} alt={dish.name} />
             </div>
 
             <div className="dish-item-info">
-                <h4 className="dish-item-name">{dish.nombre}</h4>
+                <h4 className="dish-item-name">{dish.name}</h4>
                 <div className="dish-item-price">
                     <span>{`${priceName}:`}</span>
                     <span>{`$${priceValue}`}</span>
