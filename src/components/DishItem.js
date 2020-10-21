@@ -1,13 +1,15 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect} from 'react'
+import {useCart} from '../context/CartContext'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight, faCheck } from '@fortawesome/free-solid-svg-icons';
 
-export function DishItem({product, addToCart, changeNewInCart}) {
+export function DishItem({product, changeNewInCart}) {
 
     const timeoutButtonId = useRef()
     const timeoutCartId = useRef()
 
+    const addToCart = useCart().addToCart
     const [quantity, setQuantity] = useState(1)
     const [isIcon, setIsIcon] = useState(false)
     const [priceCounter, setPriceCounter] = useState(0)
@@ -56,7 +58,7 @@ export function DishItem({product, addToCart, changeNewInCart}) {
             tempQuantity = 1
             setQuantity(tempQuantity)
         }
-        addToCart(product._id, pricesArray[priceCounter]._id, tempQuantity);
+        addToCart(product, pricesArray[priceCounter]._id, tempQuantity);
 
         // indicador de nuevo elemento en carrito
         changeNewInCart(false)

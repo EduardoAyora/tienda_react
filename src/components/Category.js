@@ -4,7 +4,7 @@ import {Header} from './Header';
 import {useCategories} from '../context/CategoriesContext'
 import axios from 'axios'
 
-export function Category({match, history, addToCart, changeNewInCart, changeActivePage}) {
+export function Category({match, history, changeNewInCart, changeActivePage}) {
 
     const [loading, setLoading] = useState(true)
 
@@ -51,7 +51,7 @@ export function Category({match, history, addToCart, changeNewInCart, changeActi
     if(!loading) {
         productsArray = category.products
         products = productsArray.map((product) => (
-            <DishItem key={product._id} product={product} addToCart={addToCart}
+            <DishItem key={product._id} product={product}
                 changeNewInCart={changeNewInCart} />
         ))
     }

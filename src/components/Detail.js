@@ -1,23 +1,27 @@
-import React from 'react';
+import React from 'react'
+import {useCart} from '../context/CartContext'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
-export function Detail({dish, priceName, priceValue, quantity, detailTotal, cartElement, addToCart, quitFromCart}) {
+export function Detail({dish, priceName, priceValue, quantity, detailTotal, cartElement}) {
+
+    const addToCart = useCart().addToCart
+    const quitFromCart = useCart().quitFromCart
 
     function buttonMinusClick() {
         // solo cuando es mayor a uno ya que no queremos tener cantidades negativas
         if(cartElement.quantity > 1) {
-            addToCart(cartElement.productId, cartElement.priceId, -1);
+            addToCart(cartElement.product, cartElement.priceId, -1)
         }
     }
 
     function buttonPlusClick() {
-        addToCart(cartElement.productId, cartElement.priceId, 1);
+        addToCart(cartElement.product, cartElement.priceId, 1)
     }
 
     function buttonQuitClick() {
-        quitFromCart(cartElement.productId, cartElement.priceId);
+        quitFromCart(cartElement.product, cartElement.priceId)
     }
 
     return(

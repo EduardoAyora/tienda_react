@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react'
 import {Detail} from './Detail'
 import axios from 'axios'
-import {useCategories} from '../context/CategoriesContext'
+import {useCart} from '../context/CartContext'
 
-export function Cart({changeNewInCart, changeActivePage, inCart, addToCart, quitFromCart}) {
+export function Cart({changeNewInCart, changeActivePage}) {
+
+    const cart = useCart().cart
 
     useEffect(() => {
         changeNewInCart(false)
@@ -31,21 +33,20 @@ export function Cart({changeNewInCart, changeActivePage, inCart, addToCart, quit
     }
 
     let cartTotal = 0;
-    const categories = useCategories().categories
 
     // renderizamos los detalles
-    const details = inCart.map((cartElement) => {
-        let dish;
+    const details = cart.map((cartElement) => {
+        let dish = cartElement.product
 
         // recuperamos los datos del plato con su id
         // esto vamos a cambiar por local storage
-        categories.forEach((category) => {
-            category.products.forEach((plato) => {
-                if(plato._id === cartElement.productId) {
-                    dish = plato;
-                }
-            })
-        })
+        // categories.forEach((category) => {
+        //     category.products.forEach((plato) => {
+        //         if(plato._id === cartElement.productId) {
+        //             dish = plato;
+        //         }
+        //     })
+        // })
 
         // recuperamos los datos del precio con su id
         const price = dish.prices.find((price) => (
@@ -65,8 +66,7 @@ export function Cart({changeNewInCart, changeActivePage, inCart, addToCart, quit
         return (
             <Detail key={key} priceName={priceName} dish={dish}
                 priceValue={priceValue} quantity={quantity} 
-                detailTotal={detailTotal} addToCart={addToCart} 
-                quitFromCart={quitFromCart} cartElement={cartElement} />
+                detailTotal={detailTotal} cartElement={cartElement} />
         )
     })
 
