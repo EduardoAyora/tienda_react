@@ -1,11 +1,15 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import {Detail} from './Detail'
 import axios from 'axios'
 import {useCart} from '../context/CartContext'
+import Modal from './Modal/Modal'
 
 export function Cart({changeNewInCart, changeActivePage}) {
 
     const cart = useCart().cart
+    const setCart = useCart().setCart
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const modalInputNumber = useRef()
 
     useEffect(() => {
         changeNewInCart(false)
@@ -18,13 +22,26 @@ export function Cart({changeNewInCart, changeActivePage}) {
         }
     }, [changeNewInCart, changeActivePage])
 
-    function handlePurchase() {
+    function handlePurchase(e) {
+        e.preventDefault()
+        const details = cart.map(cartElement => {
+            return {
+                quantity: cartElement.quantity,
+                priceId: cartElement.priceId,
+                productId: cartElement.product._id
+            }
+        })
+        console.log(details)
         axios.post('http://localhost:1100/orders', {
-            // tableNumber: 3
+            tableNumber: modalInputNumber.current.value,
+            details: details
         }).then(res => {
             console.log(res.data)
+            setIsModalOpen(false)
+            setCart([])
         }).catch(err => {
             console.log(err.response.data.message)
+            setIsModalOpen(false)
         })
 
         // axios.get('http://localhost:1100/orders').then(res => {
@@ -37,16 +54,6 @@ export function Cart({changeNewInCart, changeActivePage}) {
     // renderizamos los detalles
     const details = cart.map((cartElement) => {
         let dish = cartElement.product
-
-        // recuperamos los datos del plato con su id
-        // esto vamos a cambiar por local storage
-        // categories.forEach((category) => {
-        //     category.products.forEach((plato) => {
-        //         if(plato._id === cartElement.productId) {
-        //             dish = plato;
-        //         }
-        //     })
-        // })
 
         // recuperamos los datos del precio con su id
         const price = dish.prices.find((price) => (
@@ -87,8 +94,16 @@ export function Cart({changeNewInCart, changeActivePage}) {
                 </ul>
                 <div className="cart-total-container">
                     <div className="cart-total">Total: ${cartTotal}</div>
-                    <button onClick={handlePurchase} className="cart-total-button">Finalizar Compra</button>
+                    <button onClick={() => setIsModalOpen(true)} className="cart-total-button">Finalizar Compra</button>
                 </div>
+
+                <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}
+                    onAccept={handlePurchase}>
+                    <label>Número de mesa:</label>
+                    <input type="number" ref={modalInputNumber} required
+                        onInvalid={e => e.target.setCustomValidity('Introduzca el número de mesa')}
+                        onInput={e => e.target.setCustomValidity('')} />
+                </Modal>
             </div>
         )
     }

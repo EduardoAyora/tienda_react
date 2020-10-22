@@ -48,6 +48,7 @@ export function CartProvider({children}) {
 
     const value = {
         cart: cart,
+        setCart: setCart,
         addToCart: addToCart,
         quitFromCart: quitFromCart
     }

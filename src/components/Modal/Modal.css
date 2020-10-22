@@ -1,0 +1,74 @@
+.modal-styles {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:#FFF;
+    border-radius: 5px;
+    z-index: 1000;
+    width: 90vw;
+    max-width: 500px;
+}
+
+.overlay-styles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .7);
+    z-index: 1000;
+}
+
+ .header-styles {
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    font-size: 1.2em;
+}
+
+ .header-button-style {
+    background-color: transparent;
+    border: 0px;
+    padding: 1rem;
+    margin: -1rem -1rem -1rem auto;
+    opacity: .5;
+}
+
+ .body-styles {
+    padding: 1.2em;
+    font-size: 1.1em;
+    display: inline-block;
+}
+
+.body-styles input {
+    width: 5em;
+    height: 2em;
+    margin-left: 1em;
+    border: 1px solid #59af51;
+    border-radius: 3px;
+}
+
+ .footer-styles {
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+    padding: 1em;
+}
+
+.footer-button-style {
+    background-color: #59af51;
+    border: 0px;
+    color: white;
+    border-radius: 5px;
+    font-weight: 400;
+    padding: .375rem .75rem;
+    font-size: 1.2em;
+}
+
+@media only screen and (min-width: 1000px) {
+    .modal-styles {
+        width: 40vw;
+    }
+}
+
