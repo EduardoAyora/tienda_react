@@ -11,7 +11,7 @@ export function OrdersProvider({children}) {
     const [orders, setOrders] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:1100/orders').then(res => {
+        axios.get(process.env.REACT_APP_API_URL + '/orders').then(res => {
             setOrders(res.data)
         }).catch(err => {
             console.log(err.response.data.message)

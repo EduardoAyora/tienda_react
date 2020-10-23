@@ -37,7 +37,7 @@ function ExpandedOrder({detailOpen, order}) {
 
     const handleDelete = (e) => {
         e.preventDefault()
-        axios.delete(`http://localhost:1100/orders/${order._id}`).then(res => {
+        axios.delete(`${process.env.REACT_APP_API_URL}/orders/${order._id}`).then(res => {
             setModalOpen(false)
             setOrders(prevOrders => {
                 const newOrders = prevOrders.filter(ord => {

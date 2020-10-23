@@ -31,7 +31,7 @@ export function Cart({changeNewInCart, changeActivePage}) {
                 productId: cartElement.product._id
             }
         })
-        axios.post('http://localhost:1100/orders', {
+        axios.post(process.env.REACT_APP_API_URL + '/orders', {
             tableNumber: modalInputNumber.current.value,
             details: details
         }).then(res => {

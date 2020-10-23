@@ -10,7 +10,7 @@ import Orders from './Orders'
 
 import {OrdersProvider} from '../context/OrdersContext'
 
-import {Switch, Route} from "react-router-dom";
+import {Switch, Route} from "react-router-dom"
 
 export function Main() {
 

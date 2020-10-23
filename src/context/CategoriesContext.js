@@ -12,7 +12,7 @@ export function CategoriesProvider({children}) {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get('http://localhost:1100/categories').then(res => {
+        axios.get(process.env.REACT_APP_API_URL + '/categories').then(res => {
             setCategories(res.data)
             setLoading(false)
         }).catch(err => {
