@@ -19,7 +19,7 @@ export function Category({match, history, changeNewInCart, changeActivePage}) {
         if (!categoriesLoading) {
             if (category.products.length > 0) {
                 if (typeof category.products[0] !== 'object') {
-                    axios.get(`http://localhost:1100/categories/${category.slug}`).then(res => {
+                    axios.get(`${process.env.REACT_APP_API_URL}/categories/${category.slug}`).then(res => {
                         setCategories(prevCategories => {
                             const newCategories = prevCategories.map(prevCategorie => {
                                 if(prevCategorie.slug === category.slug) {
