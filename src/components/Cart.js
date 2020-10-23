@@ -31,12 +31,10 @@ export function Cart({changeNewInCart, changeActivePage}) {
                 productId: cartElement.product._id
             }
         })
-        console.log(details)
         axios.post('http://localhost:1100/orders', {
             tableNumber: modalInputNumber.current.value,
             details: details
         }).then(res => {
-            console.log(res.data)
             setIsModalOpen(false)
             setCart([])
         }).catch(err => {

@@ -1,6 +1,9 @@
-import React, {useState, useMemo} from 'react'
+import React, {useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCaretDown, faTrash} from '@fortawesome/free-solid-svg-icons'
+import Modal from './Modal/Modal'
+import {useOrders} from '../context/OrdersContext'
+import axios from 'axios'
 
 export default function Order({order}) {
     const [showDetail, setShowDetail] = useState(false)
@@ -19,12 +22,35 @@ export default function Order({order}) {
                     <FontAwesomeIcon icon={faCaretDown} className={showDetail ? 'fa-lg fa-rotate-180' : 'fa-lg'} />
                 </span>
             </div>
-            <ExpandedOrder details={order.details} open={showDetail} />
+            <ExpandedOrder order={order} detailOpen={showDetail} />
         </li>
     )
 }
 
-function ExpandedOrder({open, details}) {
+function ExpandedOrder({detailOpen, order}) {
+    const details = order.details
+    const setOrders = useOrders().setOrders
+    const [modalOpen, setModalOpen] = useState(false)
+    const onClose = () => {
+        setModalOpen(false)
+    }
+
+    const handleDelete = (e) => {
+        e.preventDefault()
+        axios.delete(`http://localhost:1100/orders/${order._id}`).then(res => {
+            setModalOpen(false)
+            setOrders(prevOrders => {
+                const newOrders = prevOrders.filter(ord => {
+                    return ord._id !== order._id
+                })
+                return newOrders
+            })
+        }).catch(err => {
+            console.log(err.response.data.message)
+            setModalOpen(false)
+        })
+    }
+
     // useMemo
     const detailComponents = details.map(detail => {
         const price = detail.price.value
@@ -38,7 +64,7 @@ function ExpandedOrder({open, details}) {
             </tr>
         )
     })
-    if (!open) return null
+    if (!detailOpen) return null
     return (
         <div>
             <table className='details-table'>
@@ -54,12 +80,15 @@ function ExpandedOrder({open, details}) {
                     {detailComponents}
                 </tbody>
             </table>
-            <button className='delete-detail'>
+            <button onClick={() => setModalOpen(true)} className='delete-detail'>
                 <div style={{display:'flex',alignItems:'center'}}>
                     <span style={{marginRight:'.5em', fontSize:'1.5em'}}>Borrar</span>
                     <FontAwesomeIcon icon={faTrash} className={'fa-lg'} />
                 </div>
             </button>
+            <Modal open={modalOpen} onClose={onClose} onAccept={handleDelete}>
+                ¿Seguro que desea eliminar esta orden?
+            </Modal>
         </div>
     )
 }

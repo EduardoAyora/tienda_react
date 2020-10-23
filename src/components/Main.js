@@ -8,6 +8,8 @@ import {Category} from './Category'
 import User from './User'
 import Orders from './Orders'
 
+import {OrdersProvider} from '../context/OrdersContext'
+
 import {Switch, Route} from "react-router-dom";
 
 export function Main() {
@@ -33,7 +35,9 @@ export function Main() {
                     </Route>
                     <Route path="/orders">
                         <Header pageName="Órdenes" />
-                        <Orders changeActivePage={changeActivePage} />
+                        <OrdersProvider>
+                            <Orders changeActivePage={changeActivePage} />
+                        </OrdersProvider>
                     </Route>
                     <Route path="/usuario">
                         <User changeActivePage={changeActivePage} />

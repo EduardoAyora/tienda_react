@@ -1,17 +1,13 @@
-import React, {useEffect, useState} from 'react'
-import axios from 'axios'
+import React, {useEffect} from 'react'
 import Order from './Order'
+import {useOrders} from '../context/OrdersContext'
 
 export default function Orders({changeActivePage}) {
-
-    const [orders, setOrders] = useState([])
+    const orders = useOrders().orders
 
     useEffect(() => {
         changeActivePage('orders')
         document.body.style.backgroundColor = '#f2f2f4'
-        axios.get('http://localhost:1100/orders').then(res => {
-            setOrders(res.data)
-        })
 
         return () => {
             changeActivePage('')
