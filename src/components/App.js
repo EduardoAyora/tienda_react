@@ -6,7 +6,7 @@ import {CartProvider} from '../context/CartContext'
 
 function App() {
   return (
-    <Router basename={'/tienda_react'}>
+    <Router basename={'/menu'}>
       <CartProvider>
         <CategoriesProvider>
           <Main />

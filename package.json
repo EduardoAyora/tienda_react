@@ -2,7 +2,7 @@
   "name": "tienda_react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/tienda_react",
+  "homepage": "/menu",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
