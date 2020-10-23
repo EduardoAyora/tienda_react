@@ -48,7 +48,7 @@ export function Detail({dish, priceName, priceValue, quantity, detailTotal, cart
                 </div>
 
                 <span className="dish-item-detail-price">
-                    {`$${detailTotal}`}
+                    {`$${detailTotal.toFixed(2)}`}
                 </span>
             </div>
 

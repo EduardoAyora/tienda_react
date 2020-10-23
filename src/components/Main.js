@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 
-import {Header} from './Header';
-import {Footer} from './Footer';
-import {Discovery} from './Discovery';
-import {Cart} from './Cart';
-import {User} from './User';
-import {Category} from './Category';
+import {Header} from './Header'
+import {Footer} from './Footer'
+import {Discovery} from './Discovery'
+import {Cart} from './Cart'
+import {Category} from './Category'
+import User from './User'
+import Orders from './Orders'
 
 import {Switch, Route} from "react-router-dom";
 
@@ -29,6 +30,10 @@ export function Main() {
                     <Route path="/carrito">
                         <Header pageName="Carrito" />
                         <Cart changeNewInCart={changeNewInCart} changeActivePage={changeActivePage} />
+                    </Route>
+                    <Route path="/orders">
+                        <Header pageName="Órdenes" />
+                        <Orders changeActivePage={changeActivePage} />
                     </Route>
                     <Route path="/usuario">
                         <User changeActivePage={changeActivePage} />

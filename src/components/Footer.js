@@ -2,13 +2,15 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faShoppingCart, faUserAlt } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faShoppingCart, faUserAlt, faClipboardList } from '@fortawesome/free-solid-svg-icons'
 
 export function Footer({newInCart, activePage}) {
     // agregando clase para ver un color en el icono de pagina activa 
-    let homeClassName = 'fa-lg';
-    let cartClassName = 'fa-lg';
-    let userClassName = 'fa-lg';
+    const FA_LARGE = 'fa-lg'
+    let homeClassName = FA_LARGE
+    let cartClassName = FA_LARGE
+    let userClassName = FA_LARGE
+    let ordersClassName = FA_LARGE
     switch(activePage) {
         case 'home':
             homeClassName += ' active-footer-icon';
@@ -18,6 +20,9 @@ export function Footer({newInCart, activePage}) {
             break;
         case 'user':
             userClassName += ' active-footer-icon';
+            break;
+        case 'orders':
+            ordersClassName += ' active-footer-icon';
             break;
         default:
     }
@@ -42,6 +47,11 @@ export function Footer({newInCart, activePage}) {
                     <Link to="/carrito">
                         <FontAwesomeIcon icon={faShoppingCart} className={cartClassName} />
                         {newInCartIcon}
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/orders">
+                        <FontAwesomeIcon icon={faClipboardList} className={ordersClassName} />
                     </Link>
                 </li>
                 <li>

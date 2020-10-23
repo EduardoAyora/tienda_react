@@ -43,10 +43,6 @@ export function Cart({changeNewInCart, changeActivePage}) {
             console.log(err.response.data.message)
             setIsModalOpen(false)
         })
-
-        // axios.get('http://localhost:1100/orders').then(res => {
-        //     console.log(res.data)
-        // })
     }
 
     let cartTotal = 0;
@@ -93,7 +89,7 @@ export function Cart({changeNewInCart, changeActivePage}) {
                     {details}
                 </ul>
                 <div className="cart-total-container">
-                    <div className="cart-total">Total: ${cartTotal}</div>
+                    <div className="cart-total">Total: ${cartTotal.toFixed(2)}</div>
                     <button onClick={() => setIsModalOpen(true)} className="cart-total-button">Finalizar Compra</button>
                 </div>
 

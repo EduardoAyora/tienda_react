@@ -1,21 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react'
 
-export class User extends React.Component {
+export default function User({changeActivePage}) {
 
-    componentDidMount() {
-        this.props.changeActivePage('user');
-    }
+    useEffect(() => {
+        changeActivePage('user')
+        document.body.style.backgroundColor = '#f2f2f4'
 
-    componentWillUnmount() {
-        this.props.changeActivePage('');
-    }
+        return () => {
+            changeActivePage('')
+            document.body.removeAttribute("style")
+        }
+    }, [changeActivePage])
 
-    render() {
-        return (
-            <div>
-                User 
-            </div>
-        )
-    }
-
+    return (
+        <div>
+            Usuario
+        </div>
+    )
 }
